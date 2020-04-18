@@ -40,7 +40,7 @@ public class UserController {
     public String validate(ModelMap model, @Validated @ModelAttribute("user") Khangia user,
                             BindingResult error, @RequestParam("confirmPass") String cpass, HttpSession session){
         KhangiaService service=new KhangiaService();
-        Khangia x=service.find(user,factory);
+        Khangia x=service.findById(user.getUsername(),factory);
         if (error.hasErrors() || cpass.isBlank() 
             || !cpass.equals(user.getPassword()) || x!=null){
             model.addAttribute("message", "Con loi!!!");

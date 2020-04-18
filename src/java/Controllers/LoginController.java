@@ -52,10 +52,10 @@ public class LoginController {
         }
         // luc nay user==x, username va password trung khop
         session.setAttribute("username", x.getUsername());// luu username vao session
-        session.setAttribute("loggedin", true); // luu trang thai da dang nhap thanh 
+        session.setAttribute("loggedin", true); // luu trang thai da dang nhap thanh cong
         // check remember to me
         if (request.getParameter("chkremember")!=null){
-            // luu username va passowrd vao cookie
+            // luu username va password vao cookie
             Cookie uname=new Cookie("username", x.getUsername());
             Cookie pass=new Cookie("password", x.getPassword());
             uname.setMaxAge(maxAge);

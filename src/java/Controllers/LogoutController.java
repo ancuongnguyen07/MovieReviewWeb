@@ -19,6 +19,7 @@ public class LogoutController {
     @RequestMapping("home")
     public String home(HttpSession session){
         session.setAttribute("loggedin", false);
+        session.removeAttribute("username");
         return "redirect:/welcome.htm";
     }
 }

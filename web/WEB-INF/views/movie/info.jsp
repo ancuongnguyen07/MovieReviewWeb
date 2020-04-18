@@ -34,24 +34,28 @@
         </li>
         <iframe width="560" height="315" src="${movie.trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
         <hr/>
-        <form:form action="movie/validate/${movie.maphim}.htm" modelAttribute="bl">
-            <div>            
-                <form:textarea path="noidung" cols="20" rows="5" title="Suy nghi"/>
-            </div>
-            <div>
-                <label>Diem</label>
-                <form:select path="diem">
-                    <form:option value="null" label="----Select----"/> 
-                    <form:options items="${scoreList}"/>
-                </form:select>
-            </div>
-            <div>
-                <button>Post</button>
-            </div>
-        </form:form>
+        <c:choose>
+            <c:when test="${sessionScope.loggedin==true}">
+                <form:form action="movies/validate/${movie.maphim}.htm" modelAttribute="bl">
+                    <div>            
+                        <form:textarea path="noidung" cols="20" rows="5" title="Suy nghi"/>
+                    </div>
+                    <div>
+                        <label>Diem</label>
+                        <form:select path="diem">
+                            <form:option value="null" label="----Select----"/> 
+                            <form:options items="${scoreList}"/>
+                        </form:select>
+                    </div>
+                    <div>
+                        <button>Post</button>
+                    </div>
+                </form:form>
+            </c:when>
+        </c:choose>
         <hr/>
         <h3>Binh Luan</h3>
-        <c:forEach var="bk" items="listBl">
+        <c:forEach var="bl" items="${listBl}">
             <p>${bl.noidung}</p>
             <p>Diem: ${bl.diem}</p>
         </c:forEach>

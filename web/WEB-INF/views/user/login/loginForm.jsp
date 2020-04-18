@@ -46,5 +46,8 @@
                 <button>Login</button>
             </div>
         </form>
+        <div>
+            <a href="password/recover/form.htm"><p>Quen mat khau ?</p></a>
+        </div>
     </body>
 </html>

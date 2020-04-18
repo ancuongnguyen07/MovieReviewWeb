@@ -27,9 +27,10 @@ public class WelcomeController {
     @Autowired
     SessionFactory factory;
     
-    @RequestMapping()
+    @RequestMapping() 
     public String index(ModelMap model){
         Session se=factory.getCurrentSession();
+        // Chi chon lua n phim de trinh chieu khong chon het
         String hql="FROM Phim p ORDER BY p.ngaychieu DESC";
         Query query=se.createQuery(hql);
         List<Phim> list=query.list();

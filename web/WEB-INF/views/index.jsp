@@ -9,6 +9,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Welcome to Spring Web MVC project</title>
+        <style>
+            div{
+                margin: 10px;
+            }
+            .error{
+                color: #ff0000
+            }
+        </style>
     </head>
 
     <body>
@@ -27,6 +35,14 @@
                 </form>
             </c:otherwise>
         </c:choose>   
+        <div>
+            <form action="search.htm">
+                <input type="text" placeholder="Nhap ten phim" name="keySearch"/>
+                <button>Search</button>
+                <p class="error">${sessionScope.error}</p>
+            </form>
+            
+        </div>
         <c:forEach var="m" items="${movies}">
             <c:set var="path" value="resources/images/${m.maphim}/${m.poster}" scope="session"/>
             <div>

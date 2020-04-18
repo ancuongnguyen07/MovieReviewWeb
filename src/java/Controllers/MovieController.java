@@ -7,7 +7,9 @@ package Controllers;
 
 import Entities.Binhluan;
 import Entities.Phim;
+import Services.BlService;
 import Services.FileServices;
+import Services.SearchService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,8 +42,8 @@ public class MovieController {
     @Autowired
     SessionFactory factory;
       
-    @RequestMapping("validate")
-    public String validate(ModelMap model){
+    @RequestMapping("validate/{maphim}")
+    public String validate(ModelMap model,@PathVariable("maphim") String maphim){
         
         return "";
     }
@@ -64,23 +66,23 @@ public class MovieController {
             Logger.getLogger(MovieController.class.getName()).log(Level.SEVERE, null, ex);
         }
         model.addAttribute("movie", movie);
-                
-        model.addAttribute("bl", new Binhluan());
         
         // load danh sach binh luan
-        String hql="SELECT diem,noidung FROM Binhluan bl WHERE bl.binhluanPK.maphim='"+maphim+
+        BlService bs=new BlService();
+        String hql="FROM Binhluan bl WHERE bl.binhluanPK.maphim='"+maphim+
                     "' ORDER BY bl.binhluanPK.ngaygio DESC";
-        Query query=se.createQuery(hql);
-        List<Binhluan> listBl=query.list();
-        model.addAttribute("listBl", listBl);
+        model.addAttribute("listBl", bs.loadList(hql, factory));
         session.setAttribute("maphim", maphim);
         return "movie/info";
     }
     
+    // hien danh sach diem 
     @ModelAttribute("scoreList")
     public List<Double> sl(){
         List<Double> list=new ArrayList<>();
         for (double i=0;i<=10;i+=0.5) list.add(i);
         return list;
     }
+    
+    
 }
