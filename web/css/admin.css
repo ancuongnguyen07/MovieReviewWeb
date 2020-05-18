@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.adTieude {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: black;
+  justify-content: space-between;
+}
+
+.adTieude a {
+  text-decoration: none;
+  background-color: red;
+  color: yellow;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.adTieude a:hover {
+  background-color: yellow;
+  color: red;
+}
+
+.adTieude .timkiem input {
+  width: 200px;
+  box-sizing: border-box;
+  border: 1px solid yellow;
+  border-radius: 10px;
+  outline: none;
+  padding: 12px 14px;
+  transition: 0.4s ease-in-out;
+  background-color: silver;
+}
+
+.adTieude .timkiem input[type="text"]:focus {
+  width: 400px;
+  background-color: lightpink;
+}
+
+.deleteMessage {
+  padding: 40px;
+  text-align: center;
+  border: 5px solid yellow;
+  border-radius: 2px;
+  background-color: black;
+  color: red;
+}
+
+.editmess {
+  padding: 40px;
+  text-align: center;
+  border: 5px solid yellow;
+  border-radius: 2px;
+  background-color: black;
+  color: red;
+}
+
+.content {
+  background-color: black;
+  height: 100vh;
+}
+
+.content .Bang {
+  padding: 30px;
+}
+
+.content .Bang .DeMuc {
+  background-color: brown;
+}
+
+.content .Bang table, .content .Bang th, .content .Bang td {
+  border: 1px solid #ccc;
+}
+
+.content .Bang table {
+  border-collapse: collapse;
+  width: 50%;
+}
+
+.content .Bang th, .content .Bang td {
+  text-align: left;
+  padding: 2px;
+  color: blanchedalmond;
+}
+
+.content .Bang tr:hover {
+  background-color: gray;
+  cursor: pointer;
+}
+
+.content a {
+  text-decoration: none;
+  background-color: brown;
+  color: yellow;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.content a:hover {
+  background-color: yellow;
+  color: red;
+}
+/*# sourceMappingURL=admin.css.map */

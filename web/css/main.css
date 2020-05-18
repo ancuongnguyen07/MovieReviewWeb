@@ -1,0 +1,311 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.header {
+  height: 100hv;
+  width: 100hv;
+  text-align: center;
+  align-items: center;
+}
+
+.header .logo {
+  float: left;
+  height: 60px;
+}
+
+.header .logo img {
+  height: 60px;
+  width: auto;
+}
+
+.header .container {
+  background-color: black;
+  display: flex;
+  padding: 10px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+  justify-content: space-between;
+}
+
+.header .container .left {
+  justify-content: space-between;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.header .container .left .menu1 ul {
+  display: flex;
+}
+
+.header .container .left .menu1 li :hover {
+  background-color: yellow;
+  color: black;
+  border-radius: 2px;
+}
+
+.header .container .right ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+}
+
+.header .container .right li a {
+  color: yellow;
+}
+
+.header .container .right li :hover {
+  background-color: red;
+  color: black;
+  border-radius: 2px;
+}
+
+.header .container a {
+  color: white;
+  padding: 6px 16px;
+  text-decoration: none;
+}
+
+.header .container .clearfix {
+  clear: both;
+}
+
+.header .container .find input {
+  width: 500px;
+  box-sizing: border-box;
+  border: 1px solid yellow;
+  border-radius: 10px;
+  outline: none;
+  padding: 12px 14px;
+  transition: 0.4s ease-in-out;
+  background-color: silver;
+}
+
+.header .container .find input[type="text"]:focus {
+  width: 500px;
+  background-color: lightpink;
+}
+
+.Noibat .container {
+  padding: 10px;
+  background-color: black;
+  align-items: center;
+}
+
+.Noibat .container .gioithieu {
+  color: red;
+  padding: 10px;
+}
+
+.Noibat .container .gioithieu i {
+  font-size: 30px;
+  color: yellow;
+}
+
+.Noibat .container .noidung {
+  padding: 10px;
+  border: 0.5px solid white;
+  border-radius: 2px;
+  margin: 25px;
+  display: flex;
+  width: 1000px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Noibat .container .noidung .right {
+  width: 650px;
+  color: white;
+  float: right;
+}
+
+.Noibat .container .noidung .right .gioithieu_tieude {
+  font-size: 20px;
+  color: yellow;
+  padding: 5px;
+}
+
+.Noibat .container .noidung .right .danhgia {
+  padding: 5px;
+}
+
+.Noibat .container .noidung .right .danhgia p {
+  color: red;
+}
+
+.Noibat .container .noidung .right .danhgia span {
+  color: yellow;
+}
+
+.Noibat .container .noidung .right .mota {
+  padding: 5px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.Noibat .container .noidung .right .btn_xem {
+  text-align: center;
+  align-items: center;
+  border-radius: 2px;
+  margin: 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.Noibat .container .noidung .right .btn_xem a {
+  text-decoration: none;
+}
+
+.Noibat .container .noidung .right .btn_xem .xemthem {
+  letter-spacing: 1px;
+  color: wheat;
+  box-shadow: inset 0 0 40px rgba(255, 255, 255, 0);
+  outline: 1px solid;
+  outline-color: rgba(255, 255, 255, 0.5);
+  outline-offset: 18px;
+  text-shadow: none;
+  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.Noibat .container .noidung .right .btn_xem .xemthem:hover {
+  border: 1px solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px yellow;
+}
+
+.Noibat .container .trailer {
+  padding: 20px;
+  margin: 20px;
+}
+
+.Noibat .container .trailer h2 {
+  padding: 5px;
+  color: yellow;
+}
+
+.Noibat .container .card-body {
+  display: table-cell;
+  vertical-align: middle;
+  border: 3px solid #eeddff;
+  padding: 10px;
+  width: 900px;
+}
+.Noibat .container .card-body-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Noibat .container .card-body .tieude {
+  padding: 10px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.Noibat .container .card-body .tieude h2 {
+  padding: 5px;
+  color: yellow;
+}
+
+.Noibat .container .card-body .tieude i {
+  color: yellow;
+}
+
+.Noibat .container .card-body .card-review {
+  max-height: 350px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  padding: 1.5rem;
+  margin: 0 auto;
+  color: black;
+  background-color: cornsilk;
+  width: 60%;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.Noibat .container .card-body .card-review a {
+  text-decoration: none;
+  color: brown;
+}
+
+.Noibat .container .card-body .card-review a:hover {
+  color: red;
+}
+
+.Noibat .container .card-body .card-review .comment-time {
+  font-size: 14px;
+  color: gray;
+}
+
+.Noibat .container .card-body .user-comment {
+  max-height: 350px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  padding: 1.5rem;
+  margin: 0 auto;
+  color: black;
+  background-color: cornsilk;
+  width: 60%;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.Noibat .container .card-body .user-comment .comment input {
+  width: 520px;
+  height: 50px;
+  box-sizing: border-box;
+  border: 1px solid yellow;
+  border-radius: 10px;
+  outline: none;
+  padding: 12px 14px;
+  transition: 0.4s ease-in-out;
+  background-color: silver;
+}
+
+.Noibat .container .card-body .user-comment .comment input[type="text"]:focus {
+  width: 520px;
+  background-color: lightpink;
+}
+
+.Noibat .container .card-body .user-comment .comment .submit {
+  width: 20%;
+  margin: auto;
+  padding: 5px;
+}
+
+.Noibat .container .card-body .user-comment .comment .submit button {
+  align-items: center;
+  background: linear-gradient(to right, #fc00ff, #00dbde);
+  padding: 10px 30px;
+  border-radius: 10px;
+  border: none;
+}
+
+.Noibat .container .card-body .user-comment .comment .submit button a {
+  color: white;
+}
+
+.Noibat .container .card-body .user-comment .comment .submit button:hover {
+  background: linear-gradient(to right, #fc466b, #3f5efb);
+}
+
+.Noibat .container .card-body .user-comment .comment select {
+  height: 40px;
+  width: 100px;
+  border-radius: 4px;
+  background-color: black;
+  color: yellow;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 1px #aaaaaa;
+}
+/*# sourceMappingURL=main.css.map */

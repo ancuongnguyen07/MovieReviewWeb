@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.hibernate.Query;
@@ -41,24 +42,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MovieController {
     @Autowired
     SessionFactory factory;
+    @Autowired
+    ServletContext context;
+    @Autowired
+    SearchService ss;
       
-    @RequestMapping("validate/{maphim}")
-    public String validate(ModelMap model,@PathVariable("maphim") String maphim){
-        
-        return "";
-    }
-    
     
     @RequestMapping("{maphim}")
     public String xxx(@PathVariable("maphim") String maphim,
                         @RequestParam(value = "score",required = false) Double score,
                         HttpServletRequest request,HttpSession session, ModelMap model){
         Session se=factory.openSession();
-        Transaction t=se.beginTransaction();
         Phim movie=(Phim) se.get(Phim.class, maphim);
         
         // hien noi dung tom tat
-        String filePath="E:\\Java\\WEB\\Demo\\MovieReviewWeb\\web\\resources\\text\\"+maphim+"\\tomtat1.txt";        
+        //String filePath="E:\\Java\\WEB\\Demo\\MovieReviewWeb\\web\\resources\\text\\"+maphim+"\\tomtat1.txt";  
+        String filePath=context.getRealPath("/resources/text/"+movie.getMaphim()+"/"+movie.getTomtat());
         FileServices fs=new FileServices();
         try {
             model.addAttribute("plot", fs.readTextFile(filePath));
@@ -68,11 +67,12 @@ public class MovieController {
         model.addAttribute("movie", movie);
         
         // load danh sach binh luan
-        BlService bs=new BlService();
-        String hql="FROM Binhluan bl WHERE bl.binhluanPK.maphim='"+maphim+
-                    "' ORDER BY bl.binhluanPK.ngaygio DESC";
-        model.addAttribute("listBl", bs.loadList(hql, factory));
-        session.setAttribute("maphim", maphim);
+        String hql="FROM Binhluan bl WHERE bl.phim.maphim='"+maphim+           
+                    "' AND bl.duyet=true ORDER BY bl.ngaygio DESC";
+        //"' AND bl.duyet=true"+
+        model.addAttribute("listBl", ss.listBl(hql));
+        model.addAttribute("bl", new Binhluan());
+        //session.setAttribute("maphim", maphim);
         return "movie/info";
     }
     

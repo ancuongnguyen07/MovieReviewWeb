@@ -55,6 +55,10 @@
                     p:sessionFactory-ref="sessionFactory" />
         <tx:annotation-driven transaction-manager="transactionManager" />
         
+        <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+            <property name="maxUploadSize" value="20971520" />
+        </bean>
+        
         <!-- Cau hinh EmailSender-->
         <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
             <property name="host" value="smtp.gmail.com" />
@@ -73,4 +77,18 @@
                 </props>
             </property>
         </bean>
+        
+        <!-- KHAI BAO INTERCEPTORS -->
+        <mvc:interceptors>
+            <!-- ADMIN LOGGIN INTERCEPTOR -->
+            <mvc:interceptor>
+                <mvc:mapping path="/admin/**"/>
+                <bean class="Interceptors.AdminLoggerInterceptors"/>
+            </mvc:interceptor>
+            <mvc:interceptor>
+                <mvc:mapping path="/user/**"/>
+                <mvc:exclude-mapping path="/user/access.htm"/>
+                <bean class="Interceptors.UserLoggerInterceptors"/>
+            </mvc:interceptor>
+        </mvc:interceptors> 
 </beans>

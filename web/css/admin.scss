@@ -1,0 +1,94 @@
+*{
+    margin:0;
+    padding:0;
+    border:none;
+    font-family: 'Open Sans', sans-serif;
+}
+.adTieude{
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        background-color: black;
+        justify-content: space-between;
+    a{
+        text-decoration: none;
+        background-color: red;
+        color: yellow;
+        padding: 15px;
+        border-radius: 4px ;
+    }
+    a:hover{
+        background-color: yellow;
+        color: red;
+    }
+    .timkiem{
+        input{
+                width: 200px;
+                box-sizing: border-box;
+                border: 1px solid yellow;
+                border-radius: 10px;
+                outline:none;
+                padding: 12px 14px;
+                transition:0.4s ease-in-out;
+                background-color: silver;
+        }
+        input[type="text"]:focus{
+            width:400px; 
+            background-color:lightpink;
+        }
+    }
+}
+.deleteMessage{
+    padding: 40px;
+    text-align: center;
+    border: 5px solid yellow ;
+    border-radius:2px;
+    background-color: black;
+    color: red;
+}
+.editmess{
+    padding: 40px;
+    text-align: center;
+    border: 5px solid yellow ;
+    border-radius:2px;
+    background-color: black;
+    color: red;
+}
+.content{
+    background-color: black;
+    height: 100vh;
+    .Bang{
+        padding: 30px;
+        .DeMuc{
+            background-color: brown;
+            
+        }
+        table, th, td{
+            border:1px solid #ccc;
+        }
+        table{
+            border-collapse:collapse;
+            width:50%;
+        }
+        th, td{
+            text-align:left;
+            padding:2px;
+            color: blanchedalmond;
+        }
+        tr:hover{
+            background-color:gray;
+            cursor:pointer;
+        }
+    }
+    a{
+        text-decoration: none;
+        background-color: brown;
+        color: yellow;
+        padding: 5px;
+        border-radius: 4px ;
+    }
+    a:hover{
+        background-color: yellow;
+        color: red;
+    }
+}

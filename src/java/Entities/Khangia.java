@@ -20,12 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -33,16 +28,8 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 @Entity
 @Table(name = "KHANGIA")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Khangia.findAll", query = "SELECT k FROM Khangia k"),
-    @NamedQuery(name = "Khangia.findByUsername", query = "SELECT k FROM Khangia k WHERE k.username = :username"),
-    @NamedQuery(name = "Khangia.findByHo", query = "SELECT k FROM Khangia k WHERE k.ho = :ho"),
-    @NamedQuery(name = "Khangia.findByTen", query = "SELECT k FROM Khangia k WHERE k.ten = :ten"),
-    @NamedQuery(name = "Khangia.findByEmail", query = "SELECT k FROM Khangia k WHERE k.email = :email"),
-    @NamedQuery(name = "Khangia.findByGioitinh", query = "SELECT k FROM Khangia k WHERE k.gioitinh = :gioitinh"),
-    @NamedQuery(name = "Khangia.findBySdt", query = "SELECT k FROM Khangia k WHERE k.sdt = :sdt"),
-    @NamedQuery(name = "Khangia.findByPassword", query = "SELECT k FROM Khangia k WHERE k.password = :password")})
+    @NamedQuery(name = "Khangia.findAll", query = "SELECT k FROM Khangia k")})
 public class Khangia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,42 +38,30 @@ public class Khangia implements Serializable {
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "USERNAME")
-    @NotBlank(message = "Khong duoc de trong")
     private String username;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "HO")
-    @NotBlank(message = "Khong duoc de trong")
     private String ho;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "TEN")
-    @NotBlank(message = "Khong duoc de trong")
     private String ten;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "EMAIL")
-    @Email(message = "Khong dung dinh dang email")
     private String email;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "GIOITINH")
-    private boolean gioitinh;
-    @Size(max = 15)
-    @Column(name = "SDT")
-    @NotBlank(message = "khong duoc de trong!!!")
-    @Pattern(regexp = "0[0-9]{9}",message = "Khong dung dinh dang sdt")
-    private String sdt;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "PASSWORD")
-    @NotBlank(message = "Khong duoc de trong")
     private String password;
+    @Column(name = "TRANGTHAI")
+    private boolean trangthai;
     @JoinTable(name = "YEUTHICH", joinColumns = {
         @JoinColumn(name = "USERNAME", referencedColumnName = "USERNAME")}, inverseJoinColumns = {
         @JoinColumn(name = "MAPHIM", referencedColumnName = "MAPHIM")})
@@ -94,7 +69,7 @@ public class Khangia implements Serializable {
     private List<Phim> phimList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "khangia")
     private List<Quanly> quanlyList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "khangia")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Binhluan> binhluanList;
 
     public Khangia() {
@@ -104,12 +79,11 @@ public class Khangia implements Serializable {
         this.username = username;
     }
 
-    public Khangia(String username, String ho, String ten, String email, boolean gioitinh, String password) {
+    public Khangia(String username, String ho, String ten, String email, String password) {
         this.username = username;
         this.ho = ho;
         this.ten = ten;
         this.email = email;
-        this.gioitinh = gioitinh;
         this.password = password;
     }
 
@@ -145,22 +119,6 @@ public class Khangia implements Serializable {
         this.email = email;
     }
 
-    public boolean getGioitinh() {
-        return gioitinh;
-    }
-
-    public void setGioitinh(boolean gioitinh) {
-        this.gioitinh = gioitinh;
-    }
-
-    public String getSdt() {
-        return sdt;
-    }
-
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -169,7 +127,14 @@ public class Khangia implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
+    public boolean getTrangthai() {
+        return trangthai;
+    }
+
+    public void setTrangthai(boolean trangthai) {
+        this.trangthai = trangthai;
+    }
+
     public List<Phim> getPhimList() {
         return phimList;
     }
@@ -178,7 +143,6 @@ public class Khangia implements Serializable {
         this.phimList = phimList;
     }
 
-    @XmlTransient
     public List<Quanly> getQuanlyList() {
         return quanlyList;
     }
@@ -187,7 +151,6 @@ public class Khangia implements Serializable {
         this.quanlyList = quanlyList;
     }
 
-    @XmlTransient
     public List<Binhluan> getBinhluanList() {
         return binhluanList;
     }

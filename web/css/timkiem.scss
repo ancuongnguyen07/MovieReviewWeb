@@ -1,0 +1,226 @@
+*{
+    margin:0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.header{
+    height: 100hv;
+    width: 100hv;
+    text-align: center;
+    align-items: center;
+    .logo{
+        float: left;
+        height: 60px;
+        img{
+            height: 60px;
+            width: auto;
+        }
+    }
+    .container{
+        background-color: black;
+        display: flex;
+        padding: 10px;
+        text-align: center;
+        align-items: center;
+        cursor: pointer;
+        justify-content: space-between;
+        .left{
+            justify-content: space-between;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            .menu1{
+                ul{
+                    display: flex;
+                    // list-style: none;
+                    // position: absolute;
+                    // //top: 42px;
+                    // //left: 0;
+                }
+                li{
+                    :hover{
+                        background-color: yellow;
+                        color: black;
+                        border-radius: 2px;
+                    }
+                }
+            }
+        }
+        .right{
+        
+           ul{
+                display: flex;
+                list-style: none;
+                justify-content: space-between;
+            }
+            li{
+                a{
+                    color: yellow;
+                    
+                }  
+                :hover{
+                    background-color: red;
+                    color: black;
+                    border-radius: 2px;
+                }     
+            }
+        }
+        a{
+            color: white;
+            padding: 6px 16px;
+            text-decoration: none;
+        }
+        .clearfix{
+            clear: both;
+        }
+        .find{
+            // input{
+            //     border-radius: 5px;
+            //     background-color: silver;
+            // }input[type="text"] {
+            input{
+                width: 500px;
+                box-sizing: border-box;
+                border: 1px solid yellow;
+                border-radius: 10px;
+                outline:none;
+                padding: 12px 14px;
+                transition:0.4s ease-in-out;
+                background-color: silver;
+            }
+            input[type="text"]:focus{
+                width:500px; 
+                background-color:lightpink;
+            }
+        }
+    }
+}
+.content{
+    background-color: black;
+    .products{
+        .GoiY{
+            padding: 20px;
+            border-bottom: 1px solid gray;
+            h2{
+                color: yellow;
+            }
+        }
+        .row{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            //padding: 40px;
+            margin: 20px;
+            color: white;
+            width: 100hv;
+            .blog__details{
+                margin: 0 auto;
+                padding: 20px;
+                background-color:#282828;
+                justify-content: space-between;
+                border-radius: 10px;
+                width: 350px;
+                img{
+                    width: 100%;
+                }
+                h2{
+                    padding: 5px;
+                    text-align: center;
+                    a{
+                        color: yellow;
+                    }
+                }
+                p{
+                    color: whitesmoke;
+                    letter-spacing: 2px;
+                    font-size: 12px;
+                }
+                .danhgia{
+                    p{
+                        color: red;
+                    }
+                    span{
+                        color: yellow;
+                    }
+                }
+                .docthem a{
+                    text-align: center;
+        
+                }
+                .btn_xem{
+                    text-align: center;
+                    align-items: center;
+                    //background-color: silver;
+                    border-radius: 2px;
+                    margin: 20px;
+                    padding: 5px;
+                    .xemthem{
+                        letter-spacing: 1px;
+                        color: wheat;
+                       //border: 2px solid;
+                        box-shadow: inset 0 0 40px rgba(255, 255, 255, 0);
+                        outline: 1px solid;
+                        outline-color: rgba(255, 255, 255, .5);
+                        outline-offset: 18px ;
+                        text-shadow: none;
+                        transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+                    }
+                    .xemthem:hover{
+                        //border: 1px solid;
+                        box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+                        outline-color: rgba(255, 255, 255, 0);
+                        outline-offset: 15px;
+                        text-shadow: 1px 1px 2px yellow; 
+                    }
+                }
+                .thumbnail {
+                    width: 306px;
+                    height: 400px;
+                    overflow: hidden; 
+                    //border: 1px solid #e5e5e5; 
+                }
+                 
+                /* Thumbnail */
+                .thumbnail img {
+                    width: 100%; 
+                    height: 100%;  
+                    transition-duration: 0.5s;
+                }
+                         
+                /* Hover chuột vào thumbnail */
+                .thumbnail img:hover {
+                    transform: scale(1.2);
+                    cursor: pointer; 
+                }
+            }
+        }
+        .chuyentrang{
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            width: 1200px;
+            .pagination {
+                display: inline-block;
+              }
+              
+              .pagination a {
+                color: yellow;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+              }
+            //   phần nào được hiển thị sẽ có màu xanh
+              .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border-radius: 5px;
+              }
+              
+              .pagination a:hover:not(.active) {
+                background-color: #ddd;
+                border-radius: 5px;
+              }
+        }
+    }
+}

@@ -1,0 +1,156 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.header1 {
+  height: 100hv;
+  width: 100hv;
+  text-align: center;
+  align-items: center;
+  background-color: red;
+}
+
+.header1 .contai {
+  background-color: firebrick;
+  display: flex;
+  padding: 10px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+  justify-content: space-between;
+  border: 0.4px solid orangered;
+}
+
+.header1 .contai .mov {
+  text-align: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 10px;
+  background: gray;
+  border-radius: 3px;
+}
+
+.header1 .contai .mov a {
+  color: white;
+}
+
+.header1 .contai .mov1 {
+  text-align: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 10px;
+  background: gray;
+  border-radius: 3px;
+  margin-left: 150px;
+}
+
+.header1 .contai .mov1 a {
+  color: white;
+}
+
+.header1 .contai .mov2 {
+  text-align: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 10px;
+  background: gray;
+  border-radius: 3px;
+  margin-right: 150px;
+}
+
+.header1 .contai .mov2 a {
+  color: white;
+}
+
+.header1 .contai .mov1:hover {
+  background-color: silver;
+}
+
+.header1 .contai .mov:hover {
+  background-color: silver;
+}
+
+.header1 .contai .mov2:hover {
+  background-color: silver;
+}
+
+.quanli .content {
+  background-color: black;
+  height: 120vh;
+}
+
+.quanli .content .Bang {
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  display:flex;
+}
+
+.quanli .content .Bang .DeMuc {
+  background-color: brown;
+}
+
+.quanli .content .Bang table, .quanli .content .Bang th, .quanli .content .Bang td {
+  border: 1px solid #ccc;
+}
+
+.quanli .content .Bang table {
+  border-collapse: collapse;
+  width: 50%;
+}
+
+.quanli .content .Bang th, .quanli .content .Bang td {
+  text-align: left;
+  padding: 2px;
+  color: blanchedalmond;
+}
+
+.quanli .content .Bang tr:hover {
+  background-color: gray;
+  cursor: pointer;
+}
+
+.quanli .content a {
+  text-decoration: none;
+  background-color: brown;
+  color: yellow;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.quanli .content a:hover {
+  background-color: yellow;
+  color: red;
+}
+.quanli .content .chuyentrang {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 1200px;
+}
+
+.quanli .content .chuyentrang .pagination {
+  display: inline-block;
+}
+
+.quanli .content .chuyentrang .pagination a {
+  color: yellow;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.quanli .content .chuyentrang .pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+}
+
+.quanli .content .chuyentrang .pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+/*# sourceMappingURL=ad.css.map */

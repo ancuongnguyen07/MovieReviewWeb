@@ -10,6 +10,7 @@ import Services.SearchService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,58 +28,60 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("search")
 public class SearchController {
     @Autowired
-    SessionFactory factory;
+    SearchService ss;
     
-    private int totalRecords;
-    private int recordsShow;
-    private int totalPages;
-    private List<Phim> moviesList;
+    private long totalRecords;
+    final int RECORDSHOW=6;
+    final int ROWS=2;
+    private long totalPages;
     
     @RequestMapping()
-    public String search(@RequestParam("keySearch") String key,HttpSession session,
+    public String search(@RequestParam("keySearch") String key,
                         ModelMap model){
-        session.removeAttribute("error");
         if (key.isBlank()){
-            session.setAttribute("error", "Ban chua nhap ky tu!!!");
+            //session.setAttribute("error", "Ban chua nhap ky tu!!!");
             return "redirect:/welcome.htm";
         }
-        SearchService ss=new SearchService();
-        String hql="FROM Phim p where p.ten LIKE '%"+key+"%'";
-        this.moviesList=ss.listFilm(hql, factory);
-        this.totalRecords=this.moviesList.size();
+        
+        String countHql="SELECT count(p.maphim) FROM Phim p WHERE p.ten LIKE'%"+key+"%'";
+        this.totalRecords=ss.countTotalRecords(countHql);
+        /*Session se=factory.openSession();
+
+        this.moviesList=se.createQuery("FROM Phim p WHERE p.ten LIKE :name").setParameter("name", "%"+key+"%").list();
+        se.close();*/
         if (this.totalRecords==0){
-            model.addAttribute("emptyError","Khong tim thay ket qua!!!");
+            model.addAttribute("emptyError","Không tìm thấy kết quả!!!");
+            model.addAttribute("key", key);
             return "movie/searchResults";
         }
-        this.recordsShow=2; // default value
-        if (this.totalRecords%this.recordsShow==0){
-            this.totalPages=this.totalRecords/this.recordsShow;
+        if (this.totalRecords%this.RECORDSHOW==0){
+            this.totalPages=this.totalRecords/this.RECORDSHOW;
         }
-        else this.totalPages=this.totalRecords/this.recordsShow+1;
-        session.setAttribute("moviesList", this.moviesList);
-    
+        else this.totalPages=this.totalRecords/this.RECORDSHOW+1;
         return "redirect:search/"+key+"/1.htm";
     }
     
     @RequestMapping("{key}/{numPage}")
     public String resultPages(@PathVariable("key") String key,@PathVariable("numPage") int numPage,
-                            ModelMap model,HttpSession session){
+                            ModelMap model){
         model.addAttribute("numPage", numPage);
         model.addAttribute("totalPages", this.totalPages);
-        int start=(numPage-1)*this.recordsShow;
-        int end=start+recordsShow-1;
-        model.addAttribute("start", start);
-        model.addAttribute("end", end);
+        int start=(numPage-1)*this.RECORDSHOW;
+        int itemsInRow=RECORDSHOW/ROWS;
+        model.addAttribute("itemsInRow", itemsInRow);
         model.addAttribute("key", key);
+        long numOfRows;
+        if (start>=totalRecords) numOfRows=0;
+        else {
+            long temp=(totalRecords-start);
+            if(temp>itemsInRow) numOfRows=ROWS;
+            else numOfRows=1;
+        }
+        model.addAttribute("numOfRows", numOfRows);
+        String hql="FROM Phim p WHERE p.ten LIKE'%"+key+"%'";
+        model.addAttribute("moviesList",ss.listFilm(hql, start, RECORDSHOW));
         return "movie/searchResults";
     }
     
-    @ModelAttribute("pagesList")
-    public List<Integer> list(HttpSession session){
-        List<Integer> list = new ArrayList<>();
-        for (int i=1;i<=this.totalPages;i++){
-            list.add(i);
-        }
-        return list;
-    }
+    
 }

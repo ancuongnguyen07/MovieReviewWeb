@@ -20,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -32,35 +33,39 @@ public class RecoverPassController {
     SessionFactory factory;
     @Autowired
     Xmailer mailer;
+    @Autowired
+    KhangiaService ks;
     
     
     private final String mailFrom="MyWeb";
     private final String subject="Password Recovery";
     private final int lengthOfPass=10;
     
-    @RequestMapping("recover/form")
+    @RequestMapping(value = "recover/form",method = RequestMethod.GET)
     public String recoverForm(ModelMap model){
         model.addAttribute("user", new Khangia());
         return "user/login/forgetPass/forgetPassForm";
     }
     
     @Transactional
-    @RequestMapping("recover/validate")
+    @RequestMapping(value = "recover/form",method = RequestMethod.POST)
     public String validateRP(ModelMap model,@Validated @ModelAttribute("user") KhangiaUE u,
                             BindingResult errors){
         
-        KhangiaService ks=new KhangiaService();
         PassService ps=new PassService();
-        Khangia user=ks.findById(u.getUsername(), factory); // chuyen sang entity Khangia
+        Khangia user=ks.findById(u.getUsername()); // chuyen sang entity Khangia
         if(errors.hasErrors() || user==null || !u.getEmail().equals(user.getEmail())){
             if (user==null) model.addAttribute("nonExistUser", "Usename khong ton tai!!!");
             else model.addAttribute("nonExistEmail", "Email khong dung voi email da dang ky");
             return "user/login/forgetPass/forgetPassForm";
         }
-        
-        String newPass=ps.generateRandomPass(this.lengthOfPass);
+        String newPass;
+        do{
+            newPass=ps.generateRandomPass(this.lengthOfPass);
+        }while(newPass.equals(user.getPassword()));
+        user.setPassword(newPass);
         try {
-            ks.updatePass(newPass, user, factory);       
+            ks.update(user);       
         } catch (Exception e) {
             model.addAttribute("message", "Khong the cap nhat pass moi!!!");
             model.addAttribute("user", new Khangia());

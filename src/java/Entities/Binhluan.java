@@ -9,16 +9,18 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -26,21 +28,17 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "BINHLUAN")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Binhluan.findAll", query = "SELECT b FROM Binhluan b"),
-    @NamedQuery(name = "Binhluan.findByMaphim", query = "SELECT b FROM Binhluan b WHERE b.binhluanPK.maphim = :maphim"),
-    @NamedQuery(name = "Binhluan.findByUsername", query = "SELECT b FROM Binhluan b WHERE b.binhluanPK.username = :username"),
-    @NamedQuery(name = "Binhluan.findByManv", query = "SELECT b FROM Binhluan b WHERE b.binhluanPK.manv = :manv"),
-    @NamedQuery(name = "Binhluan.findByNoidung", query = "SELECT b FROM Binhluan b WHERE b.noidung = :noidung"),
-    @NamedQuery(name = "Binhluan.findByDiem", query = "SELECT b FROM Binhluan b WHERE b.diem = :diem"),
-    @NamedQuery(name = "Binhluan.findByLuotlike", query = "SELECT b FROM Binhluan b WHERE b.luotlike = :luotlike"),
-    @NamedQuery(name = "Binhluan.findByNgaygio", query = "SELECT b FROM Binhluan b WHERE b.binhluanPK.ngaygio = :ngaygio")})
+    @NamedQuery(name = "Binhluan.findAll", query = "SELECT b FROM Binhluan b")})
 public class Binhluan implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected BinhluanPK binhluanPK;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @GeneratedValue
+    @Column(name = "ID")
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -52,42 +50,44 @@ public class Binhluan implements Serializable {
     private double diem;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "LUOTLIKE")
-    private int luotlike;
-    @JoinColumn(name = "USERNAME", referencedColumnName = "USERNAME", insertable = false, updatable = false)
+    @Column(name = "NGAYGIO")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date ngaygio;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "DUYET")
+    private boolean duyet;
+    @JoinColumn(name = "USERNAME", referencedColumnName = "USERNAME")
     @ManyToOne(optional = false)
-    private Khangia khangia;
-    @JoinColumn(name = "MANV", referencedColumnName = "MANV", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Nhanvien nhanvien;
-    @JoinColumn(name = "MAPHIM", referencedColumnName = "MAPHIM", insertable = false, updatable = false)
+    private Khangia user;
+    @JoinColumn(name = "MANV", referencedColumnName = "MANV")
+    @ManyToOne
+    private Nhanvien nv;
+    @JoinColumn(name = "MAPHIM", referencedColumnName = "MAPHIM")
     @ManyToOne(optional = false)
     private Phim phim;
 
     public Binhluan() {
     }
 
-    public Binhluan(BinhluanPK binhluanPK) {
-        this.binhluanPK = binhluanPK;
+    public Binhluan(Integer id) {
+        this.id = id;
     }
 
-    public Binhluan(BinhluanPK binhluanPK, String noidung, double diem, int luotlike) {
-        this.binhluanPK = binhluanPK;
+    public Binhluan(Integer id, String noidung, double diem, Date ngaygio, boolean duyet) {
+        this.id = id;
         this.noidung = noidung;
         this.diem = diem;
-        this.luotlike = luotlike;
+        this.ngaygio = ngaygio;
+        this.duyet = duyet;
     }
 
-    public Binhluan(String maphim, String username, String manv, Date ngaygio) {
-        this.binhluanPK = new BinhluanPK(maphim, username, manv, ngaygio);
+    public Integer getId() {
+        return id;
     }
 
-    public BinhluanPK getBinhluanPK() {
-        return binhluanPK;
-    }
-
-    public void setBinhluanPK(BinhluanPK binhluanPK) {
-        this.binhluanPK = binhluanPK;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNoidung() {
@@ -106,42 +106,50 @@ public class Binhluan implements Serializable {
         this.diem = diem;
     }
 
-    public int getLuotlike() {
-        return luotlike;
+    public Date getNgaygio() {
+        return ngaygio;
     }
 
-    public void setLuotlike(int luotlike) {
-        this.luotlike = luotlike;
+    public void setNgaygio(Date ngaygio) {
+        this.ngaygio = ngaygio;
     }
 
-    public Khangia getKhangia() {
-        return khangia;
+    public boolean getDuyet() {
+        return duyet;
     }
 
-    public void setKhangia(Khangia khangia) {
-        this.khangia = khangia;
+    public void setDuyet(boolean duyet) {
+        this.duyet = duyet;
     }
 
-    public Nhanvien getNhanvien() {
-        return nhanvien;
+    public Khangia getUser() {
+        return user;
     }
 
-    public void setNhanvien(Nhanvien nhanvien) {
-        this.nhanvien = nhanvien;
+    public void setUser(Khangia username) {
+        this.user = username;
+    }
+
+    public Nhanvien getNv() {
+        return nv;
+    }
+
+    public void setNv(Nhanvien manv) {
+        this.nv = manv;
     }
 
     public Phim getPhim() {
         return phim;
     }
 
-    public void setPhim(Phim phim) {
-        this.phim = phim;
+    public void setPhim(Phim maphim) {
+        this.phim = maphim;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (binhluanPK != null ? binhluanPK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -152,7 +160,7 @@ public class Binhluan implements Serializable {
             return false;
         }
         Binhluan other = (Binhluan) object;
-        if ((this.binhluanPK == null && other.binhluanPK != null) || (this.binhluanPK != null && !this.binhluanPK.equals(other.binhluanPK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -160,7 +168,7 @@ public class Binhluan implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Binhluan[ binhluanPK=" + binhluanPK + " ]";
+        return "Entities.Binhluan[ id=" + id + " ]";
     }
     
 }

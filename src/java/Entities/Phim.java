@@ -21,9 +21,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -31,21 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "PHIM")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Phim.findAll", query = "SELECT p FROM Phim p"),
-    @NamedQuery(name = "Phim.findByMaphim", query = "SELECT p FROM Phim p WHERE p.maphim = :maphim"),
-    @NamedQuery(name = "Phim.findByTen", query = "SELECT p FROM Phim p WHERE p.ten = :ten"),
-    @NamedQuery(name = "Phim.findByDienvien", query = "SELECT p FROM Phim p WHERE p.dienvien = :dienvien"),
-    @NamedQuery(name = "Phim.findByDaodien", query = "SELECT p FROM Phim p WHERE p.daodien = :daodien"),
-    @NamedQuery(name = "Phim.findByNgaychieu", query = "SELECT p FROM Phim p WHERE p.ngaychieu = :ngaychieu"),
-    @NamedQuery(name = "Phim.findByThoiluong", query = "SELECT p FROM Phim p WHERE p.thoiluong = :thoiluong"),
-    @NamedQuery(name = "Phim.findByGioihandotuoi", query = "SELECT p FROM Phim p WHERE p.gioihandotuoi = :gioihandotuoi"),
-    @NamedQuery(name = "Phim.findByDiem", query = "SELECT p FROM Phim p WHERE p.diem = :diem"),
-    @NamedQuery(name = "Phim.findByTrailer", query = "SELECT p FROM Phim p WHERE p.trailer = :trailer"),
-    @NamedQuery(name = "Phim.findByPoster", query = "SELECT p FROM Phim p WHERE p.poster = :poster"),
-    @NamedQuery(name = "Phim.findByTomtat", query = "SELECT p FROM Phim p WHERE p.tomtat = :tomtat"),
-    @NamedQuery(name = "Phim.findByTheloai", query = "SELECT p FROM Phim p WHERE p.theloai = :theloai")})
+    @NamedQuery(name = "Phim.findAll", query = "SELECT p FROM Phim p")})
 public class Phim implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -73,6 +60,7 @@ public class Phim implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "NGAYCHIEU")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Temporal(TemporalType.DATE)
     private Date ngaychieu;
     @Basic(optional = false)
@@ -107,6 +95,10 @@ public class Phim implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "THELOAI")
     private String theloai;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "LUOTBL")
+    private int luotbl;
     @ManyToMany(mappedBy = "phimList")
     private List<Khangia> khangiaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "phim")
@@ -121,7 +113,7 @@ public class Phim implements Serializable {
         this.maphim = maphim;
     }
 
-    public Phim(String maphim, String ten, String dienvien, String daodien, Date ngaychieu, int thoiluong, int gioihandotuoi, double diem, String trailer, String poster, String tomtat, String theloai) {
+    public Phim(String maphim, String ten, String dienvien, String daodien, Date ngaychieu, int thoiluong, int gioihandotuoi, double diem, String trailer, String poster, String tomtat, String theloai, int luotbl) {
         this.maphim = maphim;
         this.ten = ten;
         this.dienvien = dienvien;
@@ -134,6 +126,7 @@ public class Phim implements Serializable {
         this.poster = poster;
         this.tomtat = tomtat;
         this.theloai = theloai;
+        this.luotbl = luotbl;
     }
 
     public String getMaphim() {
@@ -232,7 +225,14 @@ public class Phim implements Serializable {
         this.theloai = theloai;
     }
 
-    @XmlTransient
+    public int getLuotbl() {
+        return luotbl;
+    }
+
+    public void setLuotbl(int luotbl) {
+        this.luotbl = luotbl;
+    }
+
     public List<Khangia> getKhangiaList() {
         return khangiaList;
     }
@@ -241,7 +241,6 @@ public class Phim implements Serializable {
         this.khangiaList = khangiaList;
     }
 
-    @XmlTransient
     public List<Capnhat> getCapnhatList() {
         return capnhatList;
     }
@@ -250,7 +249,6 @@ public class Phim implements Serializable {
         this.capnhatList = capnhatList;
     }
 
-    @XmlTransient
     public List<Binhluan> getBinhluanList() {
         return binhluanList;
     }

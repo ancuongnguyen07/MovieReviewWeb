@@ -16,10 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/logout/")
 public class LogoutController {
-    @RequestMapping("home")
-    public String home(HttpSession session){
-        session.setAttribute("loggedin", false);
+    @RequestMapping("user")
+    public String user(HttpSession session){
         session.removeAttribute("username");
         return "redirect:/welcome.htm";
+    }
+    
+    @RequestMapping("admin")
+    public String admin(HttpSession session){
+        session.removeAttribute("adminID");
+        return "redirect:/login/admin/form.htm";
     }
 }

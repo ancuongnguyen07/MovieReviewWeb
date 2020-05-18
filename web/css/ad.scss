@@ -1,0 +1,106 @@
+*{
+    margin:0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.header1{
+    height: 100hv;
+    width: 100hv;
+    text-align: center;
+    align-items: center;
+   .contai{
+        background-color:firebrick;
+        display: flex;
+        padding: 10px;
+        text-align: center;
+        align-items: center;
+        cursor: pointer;
+        justify-content: space-between;
+        border: 0.4px solid orangered ;
+       .mov{
+           text-align: center;
+           justify-content: space-between;
+           text-align: center;
+           padding: 10px;
+           background: gray;
+           border-radius: 3px;
+           a{
+               color: white;
+           }
+       }
+       .mov1{
+            text-align: center;
+            justify-content: space-between;
+            text-align: center;
+            padding: 10px;
+            background: gray;
+            border-radius: 3px;
+            margin-left:150px;
+            a{
+                color: white;
+            }
+        }
+        .mov2{
+            text-align: center;
+            justify-content: space-between;
+            text-align: center;
+            padding: 10px;
+            background: gray;
+            border-radius: 3px;
+            margin-right:150px;
+            a{
+                color: white;
+            }
+        }
+       .mov1:hover{
+            background-color: silver;
+        }
+        .mov:hover{
+            background-color: silver;
+        }
+        .mov2:hover{
+            background-color: silver;
+       }
+   }
+}
+.quanli{
+    .content{
+        background-color: black;
+        height: 100vh;
+        .Bang{
+            padding: 30px;
+            .DeMuc{
+                background-color: brown;
+                
+            }
+            table, th, td{
+                border:1px solid #ccc;
+            }
+            table{
+                border-collapse:collapse;
+                width:50%;
+            }
+            th, td{
+                text-align:left;
+                padding:2px;
+                color: blanchedalmond;
+            }
+            tr:hover{
+                background-color:gray;
+                cursor:pointer;
+            }
+        }
+        a{
+            text-decoration: none;
+            background-color: brown;
+            color: yellow;
+            padding: 5px;
+            border-radius: 4px ;
+        }
+        a:hover{
+            background-color: yellow;
+            color: red;
+        }
+    }
+}

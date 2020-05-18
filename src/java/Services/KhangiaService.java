@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 
@@ -19,10 +20,13 @@ import org.springframework.ui.ModelMap;
  *
  * @author Long
  */
+@Service
 @Transactional
 public class KhangiaService {
+    @Autowired
+    SessionFactory factory;
     
-    public void add(Khangia user,SessionFactory factory){
+    public void add(Khangia user){
         ModelMap model=new ModelMap();
         Session se= factory.openSession();
         Transaction t=se.beginTransaction();
@@ -38,7 +42,7 @@ public class KhangiaService {
         }
     }
     
-    public void delete(Khangia user,SessionFactory factory){
+    public void delete(Khangia user){
         Session se=factory.openSession();
         Transaction t=se.beginTransaction();
         try {          
@@ -51,34 +55,38 @@ public class KhangiaService {
         }
     }
     
-    public Khangia findById(String id,SessionFactory factory){
+    public Khangia findById(String id){
         Session se=factory.openSession();
         return (Khangia) se.get(Khangia.class, id);
     }
     
     public boolean isExist(String id,SessionFactory factory){
         Session se=factory.getCurrentSession();
-        if (findById(id, factory)==null) return false;
+        if (findById(id)==null) return false;
         return true;
     }
     //--------------------------UPDATE
     
-    public void updatePass(String newPass,Khangia user,SessionFactory factory) throws Exception{
-        String oldPass=user.getPassword();
-        if (newPass.isBlank() || newPass.equals(oldPass)) throw new Exception("Pass moi la rong");
+    public void update(Khangia user){
         Session se=factory.openSession();
         Transaction t=se.beginTransaction();
         try {
             // phai tao doi tuong moi
-            Khangia x=(Khangia)se.load(Khangia.class, user.getUsername());   
-            x.setPassword(newPass);
+            Khangia x=(Khangia)se.get(Khangia.class, user.getUsername());   
+            x.setPassword(user.getPassword());
+            x.setEmail(user.getEmail());
+            x.setHo(user.getHo());
+            x.setTen(user.getTen());
+            x.setTrangthai(user.getTrangthai());
             se.update(x);        
             t.commit();
         } catch (Exception e) {
             t.rollback();
-            throw new Exception("Hahaha");
+            
         }finally{
             se.close();
         }
     }
+    
+    
 }
