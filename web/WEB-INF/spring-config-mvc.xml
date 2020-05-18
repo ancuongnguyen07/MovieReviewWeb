@@ -55,6 +55,10 @@
                     p:sessionFactory-ref="sessionFactory" />
         <tx:annotation-driven transaction-manager="transactionManager" />
         
+        <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+            <property name="maxUploadSize" value="20971520" />
+        </bean>
+        
         <!-- Cau hinh EmailSender-->
         <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
             <property name="host" value="smtp.gmail.com" />

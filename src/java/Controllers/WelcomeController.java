@@ -6,7 +6,12 @@
 package Controllers;
 
 import Entities.Phim;
+import Services.FileServices;
+import Services.SearchService;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+import javax.servlet.ServletContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -26,16 +31,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class WelcomeController {
     @Autowired
     SessionFactory factory;
+    @Autowired
+    SearchService ss;
+    @Autowired
+    FileServices fs;
+    @Autowired
+    ServletContext context;
     
     @RequestMapping() 
-    public String index(ModelMap model){
-        Session se=factory.getCurrentSession();
-        // Chi chon lua n phim de trinh chieu khong chon het
-        String hql="FROM Phim p ORDER BY p.ngaychieu DESC";
-        Query query=se.createQuery(hql);
-        List<Phim> list=query.list();
-        model.addAttribute("movies", list);
-        model.addAttribute("message", "12345");
+    public String index(ModelMap model) throws IOException{
+        String noibat="FROM Phim p ORDER BY p.diem DESC";
+        List<Phim> noibatList=ss.listFilmMax(noibat, 4,factory);
+        model.addAttribute("noibat", noibatList);
+        String filePath=context.getRealPath("/resources/text/"+noibatList.get(0).getMaphim()+"/"+noibatList.get(0).getTomtat());
+        model.addAttribute("noibatPlot", fs.readTextFile(filePath).substring(0, 200));
+        String dangchieu="FROM Phim p WHERE p.ngaychieu<=current_date() ORDER BY p.ngaychieu DESC";
+        model.addAttribute("dangchieu", ss.listFilmMax(dangchieu, 3,factory));
+        String sapchieu="FROM Phim p WHERE p.ngaychieu>current_date() ORDER BY p.ngaychieu";
+        model.addAttribute("sapchieu", ss.listFilmMax(sapchieu, 3,factory));
+        String hot="FROM Phim p ORDER BY p.luotbl DESC";
+        model.addAttribute("hot", ss.listFilmMax(hot, 3,factory));
         return "index";
     }
 }

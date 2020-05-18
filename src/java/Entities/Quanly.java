@@ -18,7 +18,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -26,13 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "QUANLY")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Quanly.findAll", query = "SELECT q FROM Quanly q"),
-    @NamedQuery(name = "Quanly.findByUsername", query = "SELECT q FROM Quanly q WHERE q.quanlyPK.username = :username"),
-    @NamedQuery(name = "Quanly.findByManv", query = "SELECT q FROM Quanly q WHERE q.quanlyPK.manv = :manv"),
-    @NamedQuery(name = "Quanly.findByNoidung", query = "SELECT q FROM Quanly q WHERE q.noidung = :noidung"),
-    @NamedQuery(name = "Quanly.findByNgaygio", query = "SELECT q FROM Quanly q WHERE q.quanlyPK.ngaygio = :ngaygio")})
+    @NamedQuery(name = "Quanly.findAll", query = "SELECT q FROM Quanly q")})
 public class Quanly implements Serializable {
 
     private static final long serialVersionUID = 1L;

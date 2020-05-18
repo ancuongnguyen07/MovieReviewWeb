@@ -14,6 +14,9 @@
     </head>
     <body>
         <h1>Be a great member!</h1>
+        <h3>${mess}</h3>
+        <h2>${photoPath}</h2>
+        <img src="files\23.jpg" alt="ANH NE"/>
         <form action="welcome.htm" >
             <button>Return to home page</button>
         </form>

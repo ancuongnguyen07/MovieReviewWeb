@@ -7,6 +7,8 @@ package Controllers;
 
 import Entities.Khangia;
 import Services.KhangiaService;
+import java.io.File;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -28,6 +31,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
     @Autowired
     SessionFactory factory;
+    @Autowired
+    ServletContext context;
     
     //----------------------------SIGNUP NEW MEMBERS
     @RequestMapping(value = "access",params = "signup")
@@ -51,6 +56,7 @@ public class UserController {
         }
         else {           
             try {
+                user.setTrangthai(1);
                 service.add(user, factory);
                 session.setAttribute("username", user.getUsername()); // luu username vao session
             } catch (Exception e) {
@@ -60,7 +66,8 @@ public class UserController {
             return "user/signup/success";
         }
     }
-        
+    
+    
     @RequestMapping(value = "access",params = "login")
     public String loginForm(){
         return "redirect:/login/form.htm";

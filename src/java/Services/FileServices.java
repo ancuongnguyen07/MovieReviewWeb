@@ -15,11 +15,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Long
  */
+@Service
 public class FileServices {
     public static String readTextFile(String path) throws IOException{
         File file=new File(path);
@@ -31,7 +33,7 @@ public class FileServices {
         String result="";
         String line;
         while ((line=reader.readLine())!=null) result+=line;
-        System.out.println(result);
+        //System.out.println(result);
         return result;
     }
     

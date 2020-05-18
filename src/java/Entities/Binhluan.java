@@ -18,7 +18,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -26,16 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "BINHLUAN")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Binhluan.findAll", query = "SELECT b FROM Binhluan b"),
-    @NamedQuery(name = "Binhluan.findByMaphim", query = "SELECT b FROM Binhluan b WHERE b.binhluanPK.maphim = :maphim"),
-    @NamedQuery(name = "Binhluan.findByUsername", query = "SELECT b FROM Binhluan b WHERE b.binhluanPK.username = :username"),
-    @NamedQuery(name = "Binhluan.findByManv", query = "SELECT b FROM Binhluan b WHERE b.binhluanPK.manv = :manv"),
-    @NamedQuery(name = "Binhluan.findByNoidung", query = "SELECT b FROM Binhluan b WHERE b.noidung = :noidung"),
-    @NamedQuery(name = "Binhluan.findByDiem", query = "SELECT b FROM Binhluan b WHERE b.diem = :diem"),
-    @NamedQuery(name = "Binhluan.findByLuotlike", query = "SELECT b FROM Binhluan b WHERE b.luotlike = :luotlike"),
-    @NamedQuery(name = "Binhluan.findByNgaygio", query = "SELECT b FROM Binhluan b WHERE b.binhluanPK.ngaygio = :ngaygio")})
+    @NamedQuery(name = "Binhluan.findAll", query = "SELECT b FROM Binhluan b")})
 public class Binhluan implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,14 +43,14 @@ public class Binhluan implements Serializable {
     private double diem;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "LUOTLIKE")
-    private int luotlike;
+    @Column(name = "DUYET")
+    private boolean duyet;
     @JoinColumn(name = "USERNAME", referencedColumnName = "USERNAME", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Khangia khangia;
-    @JoinColumn(name = "MANV", referencedColumnName = "MANV", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Nhanvien nhanvien;
+    @JoinColumn(name = "MANV", referencedColumnName = "MANV")
+    @ManyToOne
+    private Nhanvien manv;
     @JoinColumn(name = "MAPHIM", referencedColumnName = "MAPHIM", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Phim phim;
@@ -71,15 +62,15 @@ public class Binhluan implements Serializable {
         this.binhluanPK = binhluanPK;
     }
 
-    public Binhluan(BinhluanPK binhluanPK, String noidung, double diem, int luotlike) {
+    public Binhluan(BinhluanPK binhluanPK, String noidung, double diem, boolean duyet) {
         this.binhluanPK = binhluanPK;
         this.noidung = noidung;
         this.diem = diem;
-        this.luotlike = luotlike;
+        this.duyet = duyet;
     }
 
-    public Binhluan(String maphim, String username, String manv, Date ngaygio) {
-        this.binhluanPK = new BinhluanPK(maphim, username, manv, ngaygio);
+    public Binhluan(String maphim, String username, Date ngaygio) {
+        this.binhluanPK = new BinhluanPK(maphim, username, ngaygio);
     }
 
     public BinhluanPK getBinhluanPK() {
@@ -106,12 +97,12 @@ public class Binhluan implements Serializable {
         this.diem = diem;
     }
 
-    public int getLuotlike() {
-        return luotlike;
+    public boolean getDuyet() {
+        return duyet;
     }
 
-    public void setLuotlike(int luotlike) {
-        this.luotlike = luotlike;
+    public void setDuyet(boolean duyet) {
+        this.duyet = duyet;
     }
 
     public Khangia getKhangia() {
@@ -122,12 +113,12 @@ public class Binhluan implements Serializable {
         this.khangia = khangia;
     }
 
-    public Nhanvien getNhanvien() {
-        return nhanvien;
+    public Nhanvien getManv() {
+        return manv;
     }
 
-    public void setNhanvien(Nhanvien nhanvien) {
-        this.nhanvien = nhanvien;
+    public void setManv(Nhanvien manv) {
+        this.manv = manv;
     }
 
     public Phim getPhim() {

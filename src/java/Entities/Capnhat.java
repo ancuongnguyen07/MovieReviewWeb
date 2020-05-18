@@ -18,7 +18,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -26,13 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "CAPNHAT")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Capnhat.findAll", query = "SELECT c FROM Capnhat c"),
-    @NamedQuery(name = "Capnhat.findByManv", query = "SELECT c FROM Capnhat c WHERE c.capnhatPK.manv = :manv"),
-    @NamedQuery(name = "Capnhat.findByMaphim", query = "SELECT c FROM Capnhat c WHERE c.capnhatPK.maphim = :maphim"),
-    @NamedQuery(name = "Capnhat.findByNoidung", query = "SELECT c FROM Capnhat c WHERE c.noidung = :noidung"),
-    @NamedQuery(name = "Capnhat.findByNgaygio", query = "SELECT c FROM Capnhat c WHERE c.capnhatPK.ngaygio = :ngaygio")})
+    @NamedQuery(name = "Capnhat.findAll", query = "SELECT c FROM Capnhat c")})
 public class Capnhat implements Serializable {
 
     private static final long serialVersionUID = 1L;

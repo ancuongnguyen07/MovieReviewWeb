@@ -6,20 +6,15 @@
 package Entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -27,11 +22,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "CHUCVU")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Chucvu.findAll", query = "SELECT c FROM Chucvu c"),
-    @NamedQuery(name = "Chucvu.findByMachucvu", query = "SELECT c FROM Chucvu c WHERE c.machucvu = :machucvu"),
-    @NamedQuery(name = "Chucvu.findByVitri", query = "SELECT c FROM Chucvu c WHERE c.vitri = :vitri")})
+    @NamedQuery(name = "Chucvu.findAll", query = "SELECT c FROM Chucvu c")})
 public class Chucvu implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,8 +38,6 @@ public class Chucvu implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "VITRI")
     private String vitri;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "machucvu")
-    private List<Nhanvien> nhanvienList;
 
     public Chucvu() {
     }
@@ -75,15 +65,6 @@ public class Chucvu implements Serializable {
 
     public void setVitri(String vitri) {
         this.vitri = vitri;
-    }
-
-    @XmlTransient
-    public List<Nhanvien> getNhanvienList() {
-        return nhanvienList;
-    }
-
-    public void setNhanvienList(List<Nhanvien> nhanvienList) {
-        this.nhanvienList = nhanvienList;
     }
 
     @Override

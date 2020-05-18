@@ -13,8 +13,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -23,8 +21,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,18 +28,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "NHANVIEN")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Nhanvien.findAll", query = "SELECT n FROM Nhanvien n"),
-    @NamedQuery(name = "Nhanvien.findByManv", query = "SELECT n FROM Nhanvien n WHERE n.manv = :manv"),
-    @NamedQuery(name = "Nhanvien.findByHo", query = "SELECT n FROM Nhanvien n WHERE n.ho = :ho"),
-    @NamedQuery(name = "Nhanvien.findByTen", query = "SELECT n FROM Nhanvien n WHERE n.ten = :ten"),
-    @NamedQuery(name = "Nhanvien.findByNgaysinh", query = "SELECT n FROM Nhanvien n WHERE n.ngaysinh = :ngaysinh"),
-    @NamedQuery(name = "Nhanvien.findBySdt", query = "SELECT n FROM Nhanvien n WHERE n.sdt = :sdt"),
-    @NamedQuery(name = "Nhanvien.findByGioitinh", query = "SELECT n FROM Nhanvien n WHERE n.gioitinh = :gioitinh"),
-    @NamedQuery(name = "Nhanvien.findByEmail", query = "SELECT n FROM Nhanvien n WHERE n.email = :email"),
-    @NamedQuery(name = "Nhanvien.findByDiachi", query = "SELECT n FROM Nhanvien n WHERE n.diachi = :diachi"),
-    @NamedQuery(name = "Nhanvien.findByPassword", query = "SELECT n FROM Nhanvien n WHERE n.password = :password")})
+    @NamedQuery(name = "Nhanvien.findAll", query = "SELECT n FROM Nhanvien n")})
 public class Nhanvien implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -93,12 +79,9 @@ public class Nhanvien implements Serializable {
     private String password;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "nhanvien")
     private List<Capnhat> capnhatList;
-    @JoinColumn(name = "MACHUCVU", referencedColumnName = "MACHUCVU")
-    @ManyToOne(optional = false)
-    private Chucvu machucvu;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "nhanvien")
     private List<Quanly> quanlyList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nhanvien")
+    @OneToMany(mappedBy = "manv")
     private List<Binhluan> binhluanList;
 
     public Nhanvien() {
@@ -191,7 +174,6 @@ public class Nhanvien implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
     public List<Capnhat> getCapnhatList() {
         return capnhatList;
     }
@@ -200,15 +182,6 @@ public class Nhanvien implements Serializable {
         this.capnhatList = capnhatList;
     }
 
-    public Chucvu getMachucvu() {
-        return machucvu;
-    }
-
-    public void setMachucvu(Chucvu machucvu) {
-        this.machucvu = machucvu;
-    }
-
-    @XmlTransient
     public List<Quanly> getQuanlyList() {
         return quanlyList;
     }
@@ -217,7 +190,6 @@ public class Nhanvien implements Serializable {
         this.quanlyList = quanlyList;
     }
 
-    @XmlTransient
     public List<Binhluan> getBinhluanList() {
         return binhluanList;
     }

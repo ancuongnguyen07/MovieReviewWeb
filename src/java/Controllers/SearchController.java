@@ -10,6 +10,7 @@ import Services.SearchService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,8 @@ public class SearchController {
     SessionFactory factory;
     
     private int totalRecords;
-    private int recordsShow;
+    final int RECORDSHOW=6;
+    final int ROWS=2;
     private int totalPages;
     private List<Phim> moviesList;
     
@@ -43,40 +45,52 @@ public class SearchController {
             return "redirect:/welcome.htm";
         }
         SearchService ss=new SearchService();
-        String hql="FROM Phim p where p.ten LIKE '%"+key+"%'";
-        this.moviesList=ss.listFilm(hql, factory);
+        /*String hql="FROM Phim p where p.ten LIKE '%"+key+"%'";
+        this.moviesList=ss.listFilm(hql,factory);*/
+        Session se=factory.openSession();
+
+        this.moviesList=se.createQuery("FROM Phim p WHERE p.ten LIKE :name").setParameter("name", "%"+key+"%").list();
+        se.close();
         this.totalRecords=this.moviesList.size();
         if (this.totalRecords==0){
-            model.addAttribute("emptyError","Khong tim thay ket qua!!!");
+            model.addAttribute("emptyError","Không tìm thấy kết quả!!!");
+            model.addAttribute("key", key);
             return "movie/searchResults";
         }
-        this.recordsShow=2; // default value
-        if (this.totalRecords%this.recordsShow==0){
-            this.totalPages=this.totalRecords/this.recordsShow;
+        //this.recordsShow=2; // default value
+        if (this.totalRecords%this.RECORDSHOW==0){
+            this.totalPages=this.totalRecords/this.RECORDSHOW;
         }
-        else this.totalPages=this.totalRecords/this.recordsShow+1;
+        else this.totalPages=this.totalRecords/this.RECORDSHOW+1;
         session.setAttribute("moviesList", this.moviesList);
-    
         return "redirect:search/"+key+"/1.htm";
     }
     
     @RequestMapping("{key}/{numPage}")
     public String resultPages(@PathVariable("key") String key,@PathVariable("numPage") int numPage,
-                            ModelMap model,HttpSession session){
+                            ModelMap model){
         model.addAttribute("numPage", numPage);
         model.addAttribute("totalPages", this.totalPages);
-        int start=(numPage-1)*this.recordsShow;
-        int end=start+recordsShow-1;
+        model.addAttribute("totalRecords", totalRecords);
+        int start=(numPage-1)*this.RECORDSHOW;
+        int end=start+RECORDSHOW-1;
         model.addAttribute("start", start);
-        model.addAttribute("end", end);
+        model.addAttribute("itemsInRow", RECORDSHOW/ROWS);
         model.addAttribute("key", key);
+        int numOfRows;
+        if (start>totalRecords) numOfRows=0;
+        else {
+            numOfRows=(totalRecords-start)/(RECORDSHOW/ROWS);
+            if ((totalRecords-start)%(RECORDSHOW/ROWS)>0) numOfRows+=1;
+        }
+        model.addAttribute("numOfRows", numOfRows);
         return "movie/searchResults";
     }
     
-    @ModelAttribute("pagesList")
-    public List<Integer> list(HttpSession session){
+    
+    private List<Integer> listRows(int numOfRows){
         List<Integer> list = new ArrayList<>();
-        for (int i=1;i<=this.totalPages;i++){
+        for (int i=1;i<=numOfRows;i++){
             list.add(i);
         }
         return list;

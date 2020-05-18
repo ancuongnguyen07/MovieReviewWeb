@@ -1,0 +1,371 @@
+@charset "UTF-8";
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.header {
+  height: 100hv;
+  width: 100hv;
+  text-align: center;
+  align-items: center;
+}
+
+.header .logo {
+  float: left;
+  height: 60px;
+}
+
+.header .logo img {
+  height: 60px;
+  width: auto;
+}
+
+.header .container {
+  background-color: black;
+  display: flex;
+  padding: 10px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+  justify-content: space-between;
+}
+
+.header .container .left {
+  justify-content: space-between;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.header .container .left .menu1 ul {
+  display: flex;
+}
+
+.header .container .left .menu1 ul li {
+  font-family: 'Baloo Tamma 2', cursive;
+}
+
+.header .container .left .menu1 li :hover {
+  background-color: yellow;
+  color: black;
+  border-radius: 2px;
+}
+
+.header .container .right ul {
+  font-family: 'Baloo Tamma 2', cursive;
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+}
+
+.header .container .right li a {
+  color: yellow;
+}
+
+.header .container .right li :hover {
+  background-color: red;
+  color: black;
+  border-radius: 2px;
+}
+
+.header .container a {
+  color: white;
+  padding: 6px 16px;
+  text-decoration: none;
+}
+
+.header .container .clearfix {
+  clear: both;
+}
+
+.header .container .find input {
+  width: 500px;
+  box-sizing: border-box;
+  border: 1px solid yellow;
+  border-radius: 10px;
+  outline: none;
+  padding: 12px 14px;
+  transition: 0.4s ease-in-out;
+  background-color: silver;
+}
+
+.header .container .find input[type="text"]:focus {
+  width: 500px;
+  background-color: lightpink;
+}
+
+.slide .container_slide {
+  background-color: black;
+}
+
+.slide .container_slide .slider {
+  margin: 0px auto;
+  width: 800px;
+  height: 400px;
+  position: relative;
+}
+
+.slide .container_slide .slider1 {
+  width: 800px;
+  height: 400px;
+}
+
+.slide .container_slide #prev {
+  text-transform: uppercase;
+  top: 130px;
+  left: 5px;
+  position: absolute;
+  color: white;
+}
+
+.slide .container_slide #next {
+  text-transform: uppercase;
+  top: 130px;
+  right: 5px;
+  position: absolute;
+  color: white;
+}
+
+.content {
+  background-color: black;
+}
+
+.content .Tieude {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border-bottom: 0.5px solid gray;
+  padding: 10px;
+}
+
+.content .Tieude p {
+  font-family: 'Baloo Tamma 2', cursive;
+  color: yellow;
+  font-size: 30px;
+  margin-left: 30px;
+}
+
+.content .Tieude i {
+  font-size: 30px;
+  color: yellow;
+}
+
+.content .Item_phim {
+  background-color: black;
+  padding-bottom: 10px;
+}
+
+.content .blog {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+  color: white;
+  width: 100hv;
+}
+
+.content .blog__details {
+  margin: auto;
+  padding: 20px;
+  background-color: #282828;
+  justify-content: space-between;
+  border-radius: 10px;
+  width: 350px;
+  /* Thumbnail */
+  /* Hover chuột vào thumbnail */
+}
+
+.content .blog__details img {
+  width: 100%;
+}
+
+.content .blog__details h2 {
+  padding: 5px;
+  text-align: center;
+}
+
+.content .blog__details h2 a {
+  color: yellow;
+}
+
+.content .blog__details p {
+  color: whitesmoke;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+.content .blog__details .danhgia p {
+  color: red;
+}
+
+.content .blog__details .danhgia span {
+  color: yellow;
+}
+
+.content .blog__details .docthem a {
+  text-align: center;
+}
+
+.content .blog__details .btn_xem {
+  text-align: center;
+  align-items: center;
+  border-radius: 2px;
+  margin: 20px;
+  padding: 5px;
+}
+
+.content .blog__details .btn_xem .xemthem {
+  letter-spacing: 1px;
+  color: wheat;
+  box-shadow: inset 0 0 40px rgba(255, 255, 255, 0);
+  outline: 1px solid;
+  outline-color: rgba(255, 255, 255, 0.5);
+  outline-offset: 18px;
+  text-shadow: none;
+  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.content .blog__details .btn_xem .xemthem:hover {
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px yellow;
+}
+
+.content .blog__details .thumbnail {
+  width: 306px;
+  height: 400px;
+  overflow: hidden;
+}
+
+.content .blog__details .thumbnail img {
+  width: 100%;
+  height: 100%;
+  transition-duration: 0.5s;
+}
+
+.content .blog__details .thumbnail img:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.Noibat .container {
+  padding: 10px;
+  background-color: #282828;
+  align-items: center;
+}
+
+.Noibat .container .gioithieu {
+  color: red;
+  padding: 10px;
+}
+
+.Noibat .container .gioithieu h1 {
+  font-family: 'Baloo Tamma 2', cursive;
+}
+
+.Noibat .container .gioithieu i {
+  font-size: 30px;
+  color: yellow;
+}
+
+.Noibat .container .noidung {
+  padding: 10px;
+  border: 0.5px solid white;
+  border-radius: 2px;
+  margin: 25px;
+  display: flex;
+  width: 1000px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Noibat .container .noidung .trailer {
+  width: 400px;
+}
+
+.Noibat .container .noidung .right {
+  width: 350px;
+  color: white;
+  float: right;
+}
+
+.Noibat .container .noidung .right .gioithieu_tieude {
+  font-size: 20px;
+  color: yellow;
+  padding: 5px;
+}
+
+.Noibat .container .noidung .right .mota {
+  padding: 5px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.Noibat .container .noidung .right .btn_xem {
+  text-align: center;
+  align-items: center;
+  border-radius: 2px;
+  margin: 20px;
+  padding: 5px;
+}
+
+.Noibat .container .noidung .right .btn_xem .xemthem {
+  letter-spacing: 1px;
+  color: wheat;
+  box-shadow: inset 0 0 40px rgba(255, 255, 255, 0);
+  outline: 1px solid;
+  outline-color: rgba(255, 255, 255, 0.5);
+  outline-offset: 18px;
+  text-shadow: none;
+  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.Noibat .container .noidung .right .btn_xem .xemthem:hover {
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px yellow;
+}
+
+.footer .container {
+  align-items: center;
+  background-color: #282828;
+}
+
+.footer .container .thongtin {
+  padding: 40px;
+  margin: 30px;
+  width: 960px;
+  justify-content: space-between;
+  display: flex;
+}
+
+.footer .container .thongtin .right {
+  width: 400px;
+  font-size: 8px;
+  color: lightgrey;
+  letter-spacing: 1px;
+}
+
+.footer .container .thongtin .right h1 {
+  font-family: 'Baloo 2', cursive;
+}
+
+.footer .container .thongtin .left {
+  width: 400px;
+  color: white;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.footer .container .detai {
+  text-align: center;
+  padding: 20px;
+  color: red;
+  font-family: 'Montserrat', sans-serif;
+}
+/*# sourceMappingURL=style.css.map */

@@ -6,25 +6,114 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login Form!!!</title>
         <base href="${pageContext.servletContext.contextPath}/">
+
+        <link rel="stylesheet" href="css/dangnhap.css">
+        <link rel="stylesheet" href="css/all.min.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Đăng nhập</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/reset.css">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+ 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js" ></script>
+        <script type="text/javascript" src="js/slider.js" ></script>
         <style>
-            div{
-                margin: 10px;
-            }
             .error{
-                color: #ff3333
-            }
-            #chkremember{
-                
+                color: red;
             }
         </style>
     </head>
     <body>
+        
+        <div class="header">
+            <div class="container">
+                <div class="left">
+                    <div class="logo">
+                        <a href="welcome.htm" >
+                            <img src="img/logo1.PNG" alt="HIHIHI" height="40px" width="100px">
+                        </a>
+                    </div>
+                    <div class="menu1">
+                        <ul>
+                            <li><a href=""><i class="far fa-file-video" style="color: red;" ></i> Phim</a></li>
+                            <li><a href="https://www.cgv.vn/default/movies/now-showing.html" target="_blank" >Lịch chiếu</a></li>
+                            <li><a href="https://kenh14.vn/cine.chn" target="_blank" >Sự kiện</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="find" >
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    <form action="search.htm">
+                        <input type="text" placeholder="Nhap ten phim" name="keySearch" required/>
+                        <button>Search</button>
+                        <p class="error">${sessionScope.error}</p>
+                    </form>
+                </div>
+                <div class="right" >
+                    <c:choose>
+                        <c:when test="${sessionScope.username!=null}">
+                            <ul>
+                                <li><a>Xin chao ${sessionScope.username}!!!</a></li>
+                                <li><a href="logout/home.htm">Log out</a></li>
+                            </ul>
+                        </c:when>
+                        <c:otherwise>
+                            <ul>
+                                <li><a href="user/access.htm?signup">Đăng kí</a></li>
+                                <li><a href="user/access.htm?login" >Đăng nhập</a></li>
+                            </ul>
+                        </c:otherwise>
+                    </c:choose>   
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        
+        <div class="to">
+            
+            <div class="form">
+                <form action="login/form.htm" method="post">           
+                    <h2>Đăng nhập</h2>
+                    <label>Username</label>
+                    <input type="text" name="username" value="${cookie.username.value}" required maxlength="50"/>    
+                    <p class="error">${unError}</p>
+                    <label style="margin-left: -180px;">Password</label>
+                    <input type="password" name="password" value="${cookie.password.value}" required maxlength="50"/>
+                    <p class="error">${paError}</p>
+                    <label for="chkremember">Remember me</label>
+                    <input type="checkbox" name="chkremember" value="1" id="chkremember"/>                 
+                    <input id="submit" type="submit" name="submit" value="Đăng nhập" />
+                    <a href="password/recover/form.htm"><p>Quen mat khau ?</p></a>
+                </form>
+                <script>
+                    function ketqua(){
+                        alert("Đăng nhập thành công");
+                    }
+                </script>
+                <!-- <script>
+                    Nếu các điều kiện sai thì thông báo ở đây
+                    function sai(){
+                        alert("Sai cmnr, mời chọn lại :))");
+                    }
+                </script> -->
+            </div>     
+            
+        </div>
+                                
+        <!--
         <h1>LOGIN</h1>
         ${message}
         <form action="login/validate.htm" method="post">
@@ -49,5 +138,6 @@
         <div>
             <a href="password/recover/form.htm"><p>Quen mat khau ?</p></a>
         </div>
+        -->
     </body>
 </html>

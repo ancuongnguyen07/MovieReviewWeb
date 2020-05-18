@@ -34,11 +34,6 @@ public class BinhluanPK implements Serializable {
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "MANV")
-    private String manv;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "NGAYGIO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngaygio;
@@ -46,10 +41,9 @@ public class BinhluanPK implements Serializable {
     public BinhluanPK() {
     }
 
-    public BinhluanPK(String maphim, String username, String manv, Date ngaygio) {
+    public BinhluanPK(String maphim, String username, Date ngaygio) {
         this.maphim = maphim;
         this.username = username;
-        this.manv = manv;
         this.ngaygio = ngaygio;
     }
 
@@ -69,14 +63,6 @@ public class BinhluanPK implements Serializable {
         this.username = username;
     }
 
-    public String getManv() {
-        return manv;
-    }
-
-    public void setManv(String manv) {
-        this.manv = manv;
-    }
-
     public Date getNgaygio() {
         return ngaygio;
     }
@@ -90,7 +76,6 @@ public class BinhluanPK implements Serializable {
         int hash = 0;
         hash += (maphim != null ? maphim.hashCode() : 0);
         hash += (username != null ? username.hashCode() : 0);
-        hash += (manv != null ? manv.hashCode() : 0);
         hash += (ngaygio != null ? ngaygio.hashCode() : 0);
         return hash;
     }
@@ -108,9 +93,6 @@ public class BinhluanPK implements Serializable {
         if ((this.username == null && other.username != null) || (this.username != null && !this.username.equals(other.username))) {
             return false;
         }
-        if ((this.manv == null && other.manv != null) || (this.manv != null && !this.manv.equals(other.manv))) {
-            return false;
-        }
         if ((this.ngaygio == null && other.ngaygio != null) || (this.ngaygio != null && !this.ngaygio.equals(other.ngaygio))) {
             return false;
         }
@@ -119,7 +101,7 @@ public class BinhluanPK implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.BinhluanPK[ maphim=" + maphim + ", username=" + username + ", manv=" + manv + ", ngaygio=" + ngaygio + " ]";
+        return "Entities.BinhluanPK[ maphim=" + maphim + ", username=" + username + ", ngaygio=" + ngaygio + " ]";
     }
     
 }

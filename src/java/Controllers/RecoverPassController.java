@@ -20,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -38,14 +39,14 @@ public class RecoverPassController {
     private final String subject="Password Recovery";
     private final int lengthOfPass=10;
     
-    @RequestMapping("recover/form")
+    @RequestMapping(value = "recover/form",method = RequestMethod.GET)
     public String recoverForm(ModelMap model){
         model.addAttribute("user", new Khangia());
         return "user/login/forgetPass/forgetPassForm";
     }
     
     @Transactional
-    @RequestMapping("recover/validate")
+    @RequestMapping(value = "recover/form",method = RequestMethod.POST)
     public String validateRP(ModelMap model,@Validated @ModelAttribute("user") KhangiaUE u,
                             BindingResult errors){
         
