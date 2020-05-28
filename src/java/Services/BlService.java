@@ -44,7 +44,7 @@ public class BlService {
         Transaction t=se.beginTransaction();
         try {
             Phim movie=(Phim) se.get(Phim.class, maphim);
-            
+           
             movie.setDiem((double) Math.round((movie.getDiem()*movie.getLuotbl()+bl.getDiem())*100/(movie.getLuotbl()+1))/100);
             movie.setLuotbl(movie.getLuotbl()+1);
             se.update(movie);

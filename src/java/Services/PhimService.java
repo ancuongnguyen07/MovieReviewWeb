@@ -26,5 +26,5 @@ public class PhimService {
     public boolean isExist(String maphim,SessionFactory factory){
         return findById(maphim,factory)!=null;
     }
-    
+
 }

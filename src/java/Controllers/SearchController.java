@@ -30,10 +30,12 @@ public class SearchController {
     @Autowired
     SearchService ss;
     
+
     private long totalRecords;
     final int RECORDSHOW=6;
     final int ROWS=2;
     private long totalPages;
+
     
     @RequestMapping()
     public String search(@RequestParam("keySearch") String key,
@@ -42,6 +44,7 @@ public class SearchController {
             //session.setAttribute("error", "Ban chua nhap ky tu!!!");
             return "redirect:/welcome.htm";
         }
+
         
         String countHql="SELECT count(p.maphim) FROM Phim p WHERE p.ten LIKE'%"+key+"%'";
         this.totalRecords=ss.countTotalRecords(countHql);
@@ -54,6 +57,7 @@ public class SearchController {
             model.addAttribute("key", key);
             return "movie/searchResults";
         }
+
         if (this.totalRecords%this.RECORDSHOW==0){
             this.totalPages=this.totalRecords/this.RECORDSHOW;
         }
@@ -69,6 +73,11 @@ public class SearchController {
         int start=(numPage-1)*this.RECORDSHOW;
         int itemsInRow=RECORDSHOW/ROWS;
         model.addAttribute("itemsInRow", itemsInRow);
+
+        model.addAttribute("totalRecords", totalRecords);
+        int end=start+RECORDSHOW-1;
+        model.addAttribute("start", start);
+        model.addAttribute("itemsInRow", RECORDSHOW/ROWS);
         model.addAttribute("key", key);
         long numOfRows;
         if (start>=totalRecords) numOfRows=0;
@@ -82,6 +91,5 @@ public class SearchController {
         model.addAttribute("moviesList",ss.listFilm(hql, start, RECORDSHOW));
         return "movie/searchResults";
     }
-    
     
 }

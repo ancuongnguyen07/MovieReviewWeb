@@ -25,7 +25,9 @@ public class SearchService {
     @Autowired
     SessionFactory factory;
     
+
     public List<Phim> listFilm(String hql){
+
         Session se=factory.openSession();
         Query query=se.createQuery(hql);
         List<Phim> list=query.list();  
@@ -33,6 +35,7 @@ public class SearchService {
         return list;
     }
     
+
     public List<Phim> listFilm(String hql,int maxRecords){
         Session se=factory.openSession();
         Query query=se.createQuery(hql);
@@ -110,5 +113,7 @@ public class SearchService {
         Session se=factory.openSession();
         Query query=se.createQuery(hql);
         return (long) query.uniqueResult();
+
     }
+ 
 }

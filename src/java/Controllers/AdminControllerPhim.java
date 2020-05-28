@@ -147,7 +147,6 @@ public class AdminControllerPhim {
             if(adService.updatePhim(movie,poster,textFile)) model.addAttribute("mess", "thanh cong");
             else model.addAttribute("mess", "that bai");
         }
-        
-        return "redirect:/admin/phim.htm";
+        return "redirect:/welcome.htm";
     }
 }

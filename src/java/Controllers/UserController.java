@@ -34,8 +34,10 @@ public class UserController {
     SessionFactory factory;
     @Autowired
     ServletContext context;
+
     @Autowired
     KhangiaService ks;
+
     
     //----------------------------SIGNUP NEW MEMBERS
     @RequestMapping(value = "access",params = "signup")

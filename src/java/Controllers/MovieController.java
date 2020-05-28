@@ -46,7 +46,6 @@ public class MovieController {
     ServletContext context;
     @Autowired
     SearchService ss;
-      
     
     @RequestMapping("{maphim}")
     public String xxx(@PathVariable("maphim") String maphim,
@@ -69,7 +68,6 @@ public class MovieController {
         // load danh sach binh luan
         String hql="FROM Binhluan bl WHERE bl.phim.maphim='"+maphim+           
                     "' AND bl.duyet=true ORDER BY bl.ngaygio DESC";
-        //"' AND bl.duyet=true"+
         model.addAttribute("listBl", ss.listBl(hql));
         model.addAttribute("bl", new Binhluan());
         //session.setAttribute("maphim", maphim);

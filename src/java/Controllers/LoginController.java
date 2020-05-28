@@ -36,7 +36,9 @@ public class LoginController {
     
     final private int maxAge=60*60*24; // max age of cookies
     
+
     // ============================= USER LOGIN
+
     @RequestMapping(value = "form",method = RequestMethod.GET)
     public String form(ModelMap model){
         model.addAttribute("message", "Hello cac ban!!!");
@@ -58,7 +60,9 @@ public class LoginController {
         }
         // luc nay user==x, username va password trung khop
         session.setAttribute("username", x.getUsername());// luu username vao session
+
         if (!x.getTrangthai()) session.setAttribute("blockedUser", true);
+
         // check remember to me
         if (request.getParameter("chkremember")!=null){
             // luu username va password vao cookie
@@ -82,6 +86,7 @@ public class LoginController {
         return "redirect:/welcome.htm";
     }
     
+
     
     // ============================= ADMIN LOGIN
     @RequestMapping(value = "admin/form",method = RequestMethod.GET)
@@ -127,4 +132,5 @@ public class LoginController {
         }
         return "redirect:/admin/phim.htm";
     }
+    
 }

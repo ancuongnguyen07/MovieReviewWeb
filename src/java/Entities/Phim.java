@@ -13,7 +13,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -21,9 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -60,7 +57,6 @@ public class Phim implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "NGAYCHIEU")
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Temporal(TemporalType.DATE)
     private Date ngaychieu;
     @Basic(optional = false)
@@ -99,8 +95,6 @@ public class Phim implements Serializable {
     @NotNull
     @Column(name = "LUOTBL")
     private int luotbl;
-    @ManyToMany(mappedBy = "phimList")
-    private List<Khangia> khangiaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "phim")
     private List<Capnhat> capnhatList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "phim")
@@ -231,14 +225,6 @@ public class Phim implements Serializable {
 
     public void setLuotbl(int luotbl) {
         this.luotbl = luotbl;
-    }
-
-    public List<Khangia> getKhangiaList() {
-        return khangiaList;
-    }
-
-    public void setKhangiaList(List<Khangia> khangiaList) {
-        this.khangiaList = khangiaList;
     }
 
     public List<Capnhat> getCapnhatList() {

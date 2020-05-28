@@ -9,6 +9,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Welcome to Spring Web MVC project</title>
+<<<<<<< HEAD
         <base href="${pageContext.servletContext.contextPath}/">
         <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Montserrat:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
@@ -21,6 +22,19 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js" ></script>
         <script type="text/javascript" src="js/slider.js" ></script>
         
+=======
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/reset.css">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/all.min.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js" ></script>
+        <script type="text/javascript" src="js/slider.js" ></script>
+        <base href="${pageContext.servletContext.contextPath}/">
+>>>>>>> origin/master
         <title>Trang chủ</title>
     </head>
 
@@ -36,6 +50,7 @@
                     </div>
                     <div class="menu1">
                         <ul>
+<<<<<<< HEAD
                             <li><a href="all.htm"><i class="far fa-file-video" style="color: red;" ></i> Phim</a></li>
                             <li><a href="https://www.cgv.vn/default/movies/now-showing.html" target="_blank" >Lịch chiếu</a></li>
                             <li><a href="https://kenh14.vn/cine.chn" target="_blank" >Sự kiện</a></li>
@@ -80,6 +95,52 @@
                     </c:forEach>
                     <a  id="prev"  ><i class="fas fa-chevron-circle-left" style="font-size: 40px;" ></i></a>
                     <a  id="next"  ><i class="fas fa-chevron-circle-right" style="font-size: 40px;" ></i></a>
+=======
+                            <li><a href=""><i class="far fa-file-video" style="color: red;" ></i> Phim</a></li>
+                            <li><a href="https://www.cgv.vn/default/movies/now-showing.html" target="_blank" >Lịch chiếu</a></li>
+                            <li><a href="https://kenh14.vn/cine.chn" target="_blank" >Sự kiện</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="find" >
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    <form action="search.htm">
+                        <input type="text" placeholder="Nhap ten phim" name="keySearch" required/>
+                        <button>Search</button>
+                        <p class="error">${sessionScope.error}</p>
+                    </form>
+                </div>
+                <div class="right" >
+                    <c:choose>
+                        <c:when test="${sessionScope.username!=null}">
+                            <ul>
+                                <li><a>Xin chao ${sessionScope.username}!!!</a></li>
+                                <li><a href="logout/home.htm">Log out</a></li>
+                            </ul>
+                        </c:when>
+                        <c:otherwise>
+                            <ul>
+                                <li><a href="user/access.htm?signup">Đăng kí</a></li>
+                                <li><a href="user/access.htm?login" >Đăng nhập</a></li>
+                            </ul>
+                        </c:otherwise>
+                    </c:choose>   
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+                    
+        <c:set var="path" value="resources/images/" scope="session"/>
+        <div class="slide">
+            <div class="container_slide">
+                <div class="slider">
+                    <a href="movies/${noibat[0].maphim}.htm"><img class="slider1" src="${path}${noibat[0].maphim}/${noibat[0].poster}" stt="0" /></a>
+                    <c:forEach var="m" items="${noibat}" begin="1" varStatus="index">
+                        <a href="movies/${m.maphim}.htm"><img class="slider1" src="${path}${m.maphim}/${m.poster}"  stt="${index}"  style="display:none" /></a>                        
+                    </c:forEach>
+                    <a href="#" id="prev"  ><i class="fas fa-chevron-circle-left" style="font-size: 40px;" ></i></a>
+                    <a href="#" id="next"  ><i class="fas fa-chevron-circle-right" style="font-size: 40px;" ></i></a>
+>>>>>>> origin/master
                 </div>
             </div>
         </div>

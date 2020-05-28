@@ -41,6 +41,7 @@ public class WelcomeController {
     @RequestMapping() 
     public String index(ModelMap model) throws IOException{
         String noibat="FROM Phim p ORDER BY p.diem DESC";
+
         List<Phim> noibatList=ss.listFilm(noibat, 4);
         model.addAttribute("noibat", noibatList);
         String filePath=context.getRealPath("/resources/text/"+noibatList.get(0).getMaphim()+"/"+noibatList.get(0).getTomtat());

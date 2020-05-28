@@ -49,6 +49,7 @@ public class AdminPhimService {
     }
   
 	
+
     public void savePhim(Phim phim,MultipartFile photo,MultipartFile content)
     {
         Session session = factory.openSession();
@@ -66,6 +67,7 @@ public class AdminPhimService {
             makePlotFile(maphim, content);
             phim.setMaphim(maphim);
             phim.setTomtat(content.getOriginalFilename());
+
             session.save(phim);
             transaction.commit();
         } catch (Exception e) {

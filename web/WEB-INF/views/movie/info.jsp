@@ -30,6 +30,7 @@
                     </div>
                     <div class="menu1">
                         <ul>
+<<<<<<< HEAD
                             <li><a href="all.htm">Phim</a></li>                            
                             <li><a href="https://www.cgv.vn/default/movies/now-showing.html" target="_blank" >Lịch chiếu</a></li>
                             <li><a href="https://kenh14.vn/cine.chn" target="_blank" >Sự kiện</a></li>
@@ -134,6 +135,111 @@
                                 <div class="comment-info">
                                     <h4 class="info-user">
                                         <a class="id-user" href="#">${bl.user.username}</a>
+=======
+                            <li><a href="">Phim</a>
+                                <!-- <ul>
+                                    <li><a href="">Phim nổi bật</a></li>
+                                    <li><a href="">Phim sắp chiếu</a></li>
+                                    <li><a href="">Phim đề cử</a></li>
+                                </ul> -->
+                            </li>
+                            <li><a href="https://www.cgv.vn/default/movies/now-showing.html" target="_blank" >Lịch chiếu</a></li>
+                            <li><a href="https://kenh14.vn/cine.chn" target="_blank" >Sự kiện</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="find" >
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    <form action="search.htm">
+                        <input type="text" placeholder="Nhap ten phim" name="keySearch" required/>
+                        <button>Search</button>
+                        <p class="error">${sessionScope.error}</p>
+                    </form>
+                </div>
+                <div class="right" >
+                    <c:choose>
+                        <c:when test="${sessionScope.username!=null}">
+                            <ul>
+                                <li><a>Xin chao ${sessionScope.username}!!!</a></li>
+                                <li><a href="logout/home.htm">Log out</a></li>
+                            </ul>
+                        </c:when>
+                        <c:otherwise>
+                            <ul>
+                                <li><a href="user/access.htm?signup" target="_blank" >Đăng kí</a></li>
+                                <li><a href="user/access.htm?login"target="_blank">Đăng nhập</a></li>
+                            </ul>
+                        </c:otherwise>
+                    </c:choose>   
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="Noibat">
+            <div class="container" >
+                <div class="noidung">
+                    <c:set var="path" value="resources/images/" scope="session"/>
+                    <div class="poster">
+                        <img src="${path}${movie.maphim}/${movie.poster}" alt="HIHI" height="400px" width="auto">
+                    </div>
+                    <div class="right">
+                        <div class="gioithieu_tieude">
+                            <h2>${movie.ten}</h2>
+                        </div>
+                        <div class="danhgia" >
+                            <p> Được đánh giá: <span>${movie.diem}</span></p>
+                        </div>
+                        <div class="mota">
+                            <p>${plot}</p>
+                        </div>
+                        <!--
+                        <div class="btn_xem" >
+                            <a href="" class="xemthem">Đánh giá <i class="fas fa-star"></i> </a>
+                            <a href="" class="xemthem">Mua vé <i class="fas fa-film"></i></a>
+                        </div>
+                        -->
+                    </div>
+                </div>
+                <div class="trailer" >
+                    <h2>Trailer <i class="fas fa-compact-disc"></i></h2>
+                    <iframe width="700" height="394" src="${movie.trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-body-container">
+                    <div class="card-body">
+                        <div class="tieude">
+                            <h2>Đánh giá</h2>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <c:choose>
+                            <c:when test="${sessionScope.loggedin==true}">
+                                <div class="user-comment">
+                                    <div class="iduser">
+                                        <h4 class="info-user">
+                                            <a class="id-user" href="#">${sessionScope.username}</a>
+                                        </h4>
+                                    </div>
+                                    <div class="comment">
+                                        <form:form action="comment/${movie.maphim}.htm" modelAttribute="bl">
+                                            <form:input path="noidung" type="text" name="review" placeholder="Nhận xét của bạn"/>
+                                            <form:errors path="noidung"/>
+                                                <form:select path="diem" id="DanhGia">
+                                                    <form:options items="${scoreList}"/>
+                                                    <form:errors path="diem"/>
+                                                </form:select>
+                                            <div class="submit">   
+                                                <button>Gửi</button>
+                                            </div>
+                                        </form:form>
+                                    </div>
+                                </div>
+                            </c:when>
+                        </c:choose>
+                        <c:forEach var="bl" items="${listBl}">
+                            <div class="card-review">
+                                <div class="comment-info">
+                                    <h4 class="info-user">
+                                        <a class="id-user" href="#">${bl.binhluanPK.username}</a>
+>>>>>>> origin/master
                                         <span>
                                             <i class="fas fa-star"></i>
                                             ${bl.diem}
@@ -195,7 +301,11 @@
         <h3>Binh Luan</h3>
         <c:forEach var="bl" items="${listBl}">
             <div>
+<<<<<<< HEAD
                 <p>${bl.user.username}</p>
+=======
+                <p>${bl.binhluanPK.username}</p>
+>>>>>>> origin/master
                 <p>${bl.noidung}</p>
                 <p>Diem: ${bl.diem}</p>
             </div>         

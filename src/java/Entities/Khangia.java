@@ -12,9 +12,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -60,13 +57,10 @@ public class Khangia implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "PASSWORD")
     private String password;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "TRANGTHAI")
     private boolean trangthai;
-    @JoinTable(name = "YEUTHICH", joinColumns = {
-        @JoinColumn(name = "USERNAME", referencedColumnName = "USERNAME")}, inverseJoinColumns = {
-        @JoinColumn(name = "MAPHIM", referencedColumnName = "MAPHIM")})
-    @ManyToMany
-    private List<Phim> phimList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "khangia")
     private List<Quanly> quanlyList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -79,12 +73,13 @@ public class Khangia implements Serializable {
         this.username = username;
     }
 
-    public Khangia(String username, String ho, String ten, String email, String password) {
+    public Khangia(String username, String ho, String ten, String email, String password, boolean trangthai) {
         this.username = username;
         this.ho = ho;
         this.ten = ten;
         this.email = email;
         this.password = password;
+        this.trangthai = trangthai;
     }
 
     public String getUsername() {
@@ -133,14 +128,6 @@ public class Khangia implements Serializable {
 
     public void setTrangthai(boolean trangthai) {
         this.trangthai = trangthai;
-    }
-
-    public List<Phim> getPhimList() {
-        return phimList;
-    }
-
-    public void setPhimList(List<Phim> phimList) {
-        this.phimList = phimList;
     }
 
     public List<Quanly> getQuanlyList() {

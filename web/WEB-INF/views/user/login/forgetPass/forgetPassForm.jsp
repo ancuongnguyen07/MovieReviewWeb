@@ -15,6 +15,7 @@
         <title>Forget Password Form</title>
         <base href="${pageContext.servletContext.contextPath}/">
 
+<<<<<<< HEAD
         <link rel="stylesheet" href="css/dn.css">
         <link rel="stylesheet" href="css/all.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +27,21 @@
         <link rel="stylesheet" href="css/style.css">
 
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js" ></script>
+=======
+        <link rel="stylesheet" href="css/dangnhap.css">
+        <link rel="stylesheet" href="css/all.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/reset.css">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+ 
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js" ></script>
+        <script type="text/javascript" src="js/slider.js" ></script>
+>>>>>>> origin/master
         <style>
             .error{
                 color: #ff0000;
@@ -44,6 +60,7 @@
                     </div>
                     <div class="menu1">
                         <ul>
+<<<<<<< HEAD
                             <li><a href="all.htm"><i class="far fa-file-video" style="color: red;" ></i> Phim</a></li>
                             <li><a href="https://www.cgv.vn/default/movies/now-showing.html" target="_blank" >Lịch chiếu</a></li>
                             <li><a href="https://kenh14.vn/cine.chn" target="_blank" >Sự kiện</a></li>
@@ -103,6 +120,42 @@
         </div>
                     
         <!--          
+=======
+                            <li><a href=""><i class="far fa-file-video" style="color: red;" ></i> Phim</a></li>
+                            <li><a href="https://www.cgv.vn/default/movies/now-showing.html" target="_blank" >Lịch chiếu</a></li>
+                            <li><a href="https://kenh14.vn/cine.chn" target="_blank" >Sự kiện</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="find" >
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    <form action="search.htm">
+                        <input type="text" placeholder="Nhap ten phim" name="keySearch" required/>
+                        <button>Search</button>
+                        <p class="error">${sessionScope.error}</p>
+                    </form>
+                </div>
+                <div class="right" >
+                    <c:choose>
+                        <c:when test="${sessionScope.username!=null}">
+                            <ul>
+                                <li><a>Xin chao ${sessionScope.username}!!!</a></li>
+                                <li><a href="logout/home.htm">Log out</a></li>
+                            </ul>
+                        </c:when>
+                        <c:otherwise>
+                            <ul>
+                                <li><a href="user/access.htm?signup">Đăng kí</a></li>
+                                <li><a href="user/access.htm?login" >Đăng nhập</a></li>
+                            </ul>
+                        </c:otherwise>
+                    </c:choose>   
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+                    
+>>>>>>> origin/master
         <div class="to">
             
             <div class="form">
